@@ -1,0 +1,17 @@
+CREATE TABLE usuarios(
+id INT primary key not null ,
+nombre VARCHAR(50) NOT NULL,
+apellido VARCHAR(50) NOT NULL,
+correo_electronico VARCHAR(50) NOT NULL,
+nombre_de_usuario VARCHAR(50) NOT NULL,
+contrasenha VARCHAR(50) NOT NULL);
+
+CREATE TABLE videos(
+id INT primary key not null ,
+titulo VARCHAR(50) NOT NULL,
+autor VARCHAR(50) NOT NULL,
+fecha_de_creacion VARCHAR(50) NOT NULL,
+duracion VARCHAR(50) NOT NULL,
+numero_de_reproducciones VARCHAR(50) NOT NULL,
+descripcion VARCHAR(50) NOT NULL,
+formato VARCHAR(50) NOT NULL);
