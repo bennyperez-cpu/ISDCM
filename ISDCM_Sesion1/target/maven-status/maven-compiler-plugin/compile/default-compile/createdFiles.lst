@@ -1,2 +1,8 @@
+isdcm/model/video.class
+isdcm/model/Conexion.class
+isdcm/model/usuario.class
 isdcm/isdcm_sesion1/resources/JavaEE8Resource.class
+isdcm/controller/servletUsuarios.class
+isdcm/controller/servletListadoVid.class
+isdcm/controller/servletRegistroVid.class
 isdcm/isdcm_sesion1/JAXRSConfiguration.class
