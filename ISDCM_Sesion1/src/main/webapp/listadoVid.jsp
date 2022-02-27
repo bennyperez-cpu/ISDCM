@@ -1,7 +1,7 @@
 <%-- 
     Document   : listadoVId.jsp
     Created on : 22-feb-2022, 1:55:32
-    Author     : alumne
+    Author     : Benny Hammer Pérez Vásquez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Página de Búsqueda de Videos</title>
+        <link href="css/Estilos_listadoVid.css" rel="stylesheet" type="text/css"/> 
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -21,8 +22,8 @@
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-        <style>
-            body {
+        <%--  <style>
+                    body {
                 font-family: 'Poppins', sans-serif;
                 background: #fafafa;
             }
@@ -102,7 +103,8 @@
                 font-size: 40px;
                 width: 100%;
             }
-        </style>
+        </style>  --%> 
+        
     </head>
     <body>
         <div class="wrapper">
