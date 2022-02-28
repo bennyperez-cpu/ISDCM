@@ -16,7 +16,7 @@
     <body>
         
         <div class="container col-lg-3">
-            <form > 
+            <form action = "servletUsuarios"> 
                 <div class = "form-group text-center">
                     <div class="form-group title_header">Sube tus Videos Ya!</div>
                     <p><strong><br/></strong></p>
@@ -24,8 +24,8 @@
                 </div>
                 
                 <div class = "form-group">                    
-                    <label>Usuario o Email</label>
-                    <input class="form-control text-center" type="text" name="txtnom" placeholder="Ingrese usuario o email">                    
+                    <label>Nombre de Usuario</label>
+                    <input class="form-control text-center" type="text" name="txtnom" placeholder="Ingrese usuario">                    
                 </div>
                 <div class = "form-groupr">
                      <label for="passwordInput" style="float: left">Contraseña</label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class = "form-group"></div>
                 <div class = "form-group text-center">
-                    <input type="submit" name="txtcorreo" name="action" value ="Ingresar" class="btn btn-primary mb-2 text-center">
+                    <input type="submit" name="accion" value ="Ingresar" class="btn btn-primary mb-2 text-center">
                 </div>
             </form>
             

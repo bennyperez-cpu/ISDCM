@@ -29,59 +29,61 @@ public class usuario {
         this.nombre_de_usuario = "";
         this.contrasenha = "";
     }
-    
-    public usuario(String nombre, String apellido, String correo_electronico, 
-                String nombre_de_usuario, String contrasenha) {
+
+    public usuario(String nombre, String apellido, String correo_electronico, String nombre_de_usuario, String contrasenha) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo_electronico = correo_electronico;
-        this.nombre_de_usuario = nombre_de_usuario; 
+        this.nombre_de_usuario = nombre_de_usuario;
         this.contrasenha = contrasenha;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreo_electronico() {
+        return correo_electronico;
+    }
+
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
+    }
+
+    public String getNombre_de_usuario() {
+        return nombre_de_usuario;
+    }
+
+    public void setNombre_de_usuario(String nombre_de_usuario) {
+        this.nombre_de_usuario = nombre_de_usuario;
+    }
+
+    public String getContrasenha() {
+        return contrasenha;
+    }
+
+    public void setContrasenha(String contrasenha) {
+        this.contrasenha = contrasenha;
+    }
+    
     
  /*   public Usuario(){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   */  
-    public String getUsername() {
-        return nombre_de_usuario;
-    }
-
-    public void setUsername(String username) {
-        this.nombre_de_usuario = nombre_de_usuario;
-    }
-
-    public String getPassword() {
-        return contrasenha;
-    }
-
-    public void setPassword(String password) {
-        this.contrasenha = contrasenha;
-    }
-
-    public String getName() {
-        return nombre;
-    }
-
-    public void setName(String name) {
-        this.nombre = nombre;
-    }
-
-    public String getSurname() {
-        return apellido;
-    }
-
-    public void setSurname(String surname) {
-        this.apellido = apellido;
-    }
-
-    public String getEmail() {
-        return correo_electronico;
-    }
-
-    public void setEmail(String email) {
-        this.correo_electronico = correo_electronico;
-    }
+   
     
 /*
     public String queryTest (String user, String passwd){
