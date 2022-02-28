@@ -1,8 +1,9 @@
-package com.isdcm.dao;
+package isdcm.helpers.dao;
 
-import com.isdcm.dto.VideoDTO;
-import com.isdcm.jdbc.DataSource;
 import java.sql.*;
+
+import isdcm.helpers.dto.VideoDTO;
+import isdcm.helpers.jdbc.DataSource;
 
 public class VideoDAO {
     

@@ -5,8 +5,6 @@
  */
 package isdcm.controller;
 
-import com.isdcm.dao.VideoDAO;
-import com.isdcm.dto.VideoDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -16,6 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import isdcm.helpers.dao.VideoDAO;
+import isdcm.helpers.dto.VideoDTO;
 
 /**
  *

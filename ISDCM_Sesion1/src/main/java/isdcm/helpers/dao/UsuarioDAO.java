@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isdcm.dao;
+package isdcm.helpers.dao;
 
-import com.isdcm.dto.UsuarioDTO;
-import com.isdcm.jdbc.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import isdcm.helpers.dto.UsuarioDTO;
+import isdcm.helpers.jdbc.DataSource;
 
 /**
  *

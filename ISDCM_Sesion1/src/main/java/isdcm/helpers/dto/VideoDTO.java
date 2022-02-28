@@ -1,8 +1,10 @@
-package com.isdcm.dto;
+package isdcm.helpers.dto;
 
-import com.isdcm.jdbc.DataSource;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import isdcm.helpers.jdbc.DataSource;
+
 import java.sql.*;
 
 public class VideoDTO {
