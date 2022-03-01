@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vásquez
  */
 @WebServlet(name = "servletUsuarios", urlPatterns = {"/servletUsuarios"})
 public class servletUsuarios extends HttpServlet {
@@ -38,21 +38,21 @@ public class servletUsuarios extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
-        if(accion.equals("Ingresar")){
-            String nombre=request.getParameter("txtnom");
-            String contrasenha=request.getParameter("password");
-            usu.setNombre_de_usuario(nombre);
-            usu.setContrasenha(contrasenha);
-            r=dao.validar(usu);
-            if(r==1){
-                request.getRequestDispatcher("listadoVid.jsp").forward(request, response);
-            }else{
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+            if(accion.equals("Ingresar")){
+                String nombre=request.getParameter("txtnom");
+                String contrasenha=request.getParameter("password");
+                usu.setNombre_de_usuario(nombre);
+                usu.setContrasenha(contrasenha);
+                r=dao.validar(usu);
+                if(r==1){
+                    request.getRequestDispatcher("listadoVid.jsp").forward(request, response);
+                }else{
+                    request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
+                }
             }
-        }
         
         }
     
@@ -82,8 +82,36 @@ public class servletUsuarios extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    throws ServletException, IOException {
+        String nombre=request.getParameter("name");
+        String apellido=request.getParameter("surname");
+        String correo_electronico=request.getParameter("email");
+        String nombre_usuario=request.getParameter("username");
+        String contrasenha=request.getParameter("password");
+        String contrasenha2=request.getParameter("password2");
+        
+        if(contrasenha==contrasenha2){
+
+            usuario usu1 = new usuario();
+            usu1.setNombre(nombre);
+            usu1.setApellido(apellido);
+            usu1.setCorreo_electronico(correo_electronico);
+            usu1.setNombre_de_usuario(nombre_usuario);
+            usu1.setContrasenha(contrasenha);
+
+            try {
+                dao.registerusu(usu1);
+            } catch (Exception e) {
+                //TODO: handle exception
+                e.printStackTrace();
+            }    
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+        } else {
+
+            request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
+        }
+        
     }
 
     /**

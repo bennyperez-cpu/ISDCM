@@ -20,8 +20,9 @@ public class usuarioDAO implements Validar{
     Conexion_DB cn = new Conexion_DB();
     PreparedStatement ps;
     ResultSet rs;
-    int r;
+    int r,ID;
     
+    //Login de Usuario
     @Override
     public int validar(usuario usu){
         String sql="Select * from usuarios where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
@@ -58,4 +59,54 @@ public class usuarioDAO implements Validar{
         
     }
     
+    //Registro de usuario
+    public int registerusu(usuario usu1) throws ClassNotFoundException {
+        String sql = "INSERT INTO usuarios" +
+            "  (ID, NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES " +
+            " (?, ?, ?, ?, ?);";
+
+        int result = 0;
+
+        Class.forName("com.mysql.jdbc.Driver");
+
+        try{
+            
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);            
+            ps.setInt(1, ID);
+            ps.setString(2, usu1.getNombre());
+            ps.setString(3, usu1.getApellido());
+            ps.setString(4, usu1.getCorreo_electronico());
+            ps.setString(5, usu1.getNombre_de_usuario());
+            ps.setString(6, usu1.getContrasenha());
+            //rs=ps.executeQuery();
+
+            System.out.println(ps);
+            // Step 3: Execute the query or update query
+            result = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        return result;
+    }
+
+    private void printSQLException(SQLException ex) {
+        for (Throwable e: ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+
+
 }
