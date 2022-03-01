@@ -1,5 +1,5 @@
 CREATE TABLE usuarios(
-id INT primary key not null ,
+id_usu INT not null primary key generated always as identity (start with 1, increment by 1) ,
 nombre VARCHAR(50) NOT NULL,
 apellido VARCHAR(50) NOT NULL,
 correo_electronico VARCHAR(50) NOT NULL,
@@ -15,3 +15,20 @@ duracion VARCHAR(50) NOT NULL,
 numero_de_reproducciones VARCHAR(50) NOT NULL,
 descripcion VARCHAR(50) NOT NULL,
 formato VARCHAR(50) NOT NULL);
+
+
+
+ALTER TABLE table_name ADD column_name datatype;
+
+(    
+   ALTER TABLE table_name ADD "USER_ID" INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),   
+   "FNAME" VARCHAR(50),     
+   "LNAME" VARCHAR(50),
+   "ADDR" VARCHAR(100),
+   "SUBURB" VARCHAR(20),
+   "PCODE" INTEGER,  
+   "PHONE" INTEGER,
+   "MOB" INTEGER,    
+   "EMAIL" VARCHAR(100),
+   "COMM" VARCHAR(450)    
+);
