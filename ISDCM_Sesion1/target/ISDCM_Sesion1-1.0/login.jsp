@@ -16,7 +16,7 @@
     <body>
         
         <div class="container col-lg-3">
-            <form action = "servletUsuarios"> 
+            <form action = "servletUsuarios" method ="get"> 
                 <div class = "form-group text-center">
                     <div class="form-group title_header">Sube tus Videos Ya!</div>
                     <p><strong><br/></strong></p>

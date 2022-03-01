@@ -1,13 +1,11 @@
-CREATE TABLE usuarios(
-id_usu INT not null primary key generated always as identity (start with 1, increment by 1) ,
+CREATE TABLE usuarios(id_usu INT not null primary key generated always as identity (start with 1, increment by 1),
 nombre VARCHAR(50) NOT NULL,
 apellido VARCHAR(50) NOT NULL,
 correo_electronico VARCHAR(50) NOT NULL,
 nombre_de_usuario VARCHAR(50) NOT NULL,
 contrasenha VARCHAR(50) NOT NULL);
 
-CREATE TABLE videos(
-id INT primary key not null ,
+CREATE TABLE videos(id_vid INT not null primary key generated always as identity (start with 1, increment by 1),
 titulo VARCHAR(50) NOT NULL,
 autor VARCHAR(50) NOT NULL,
 fecha_de_creacion VARCHAR(50) NOT NULL,
