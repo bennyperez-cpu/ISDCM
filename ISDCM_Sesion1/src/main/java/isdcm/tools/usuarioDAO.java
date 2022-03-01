@@ -62,7 +62,7 @@ public class usuarioDAO implements Validar{
     
     //Registro de usuario
     public int registerusu(usuario usu1) throws ClassNotFoundException {
-        String sql = "INSERT INTO USUARIOS" + "  (NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES" +" (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO USUARIOS" + "  (NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES" +" (?, ?, ?, ?, ?)";
         //String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         int result = 0;
         try{
@@ -85,7 +85,7 @@ public class usuarioDAO implements Validar{
             // process sql exception
             printSQLException(e);
         }
-        return result;
+        return 1;
     }
 
     private void printSQLException(SQLException ex) {
