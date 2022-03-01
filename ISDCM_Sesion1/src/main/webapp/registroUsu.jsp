@@ -17,7 +17,7 @@
         
         <div class="container col-lg-3">
             
-            <form>
+            <form action= "servletUsuarios">
                 <div class="form-group all ">
                     <label for="nameRegisterInput" style="float: left">Ingresa tu Nombre</label>
                     <input name="name" type="text" class="form-control" id="nameRegisterInput" placeholder="nombre" required>

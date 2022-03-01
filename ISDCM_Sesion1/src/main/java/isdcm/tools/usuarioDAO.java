@@ -26,6 +26,7 @@ public class usuarioDAO implements Validar{
     @Override
     public int validar(usuario usu){
         String sql="Select * from usuarios where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
+       // String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -61,24 +62,19 @@ public class usuarioDAO implements Validar{
     
     //Registro de usuario
     public int registerusu(usuario usu1) throws ClassNotFoundException {
-        String sql = "INSERT INTO usuarios" +
-            "  (ID, NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES " +
-            " (?, ?, ?, ?, ?);";
-
+        String sql = "INSERT INTO USUARIOS" + "  (NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES" +" (?, ?, ?, ?, ?);";
+        //String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         int result = 0;
-
-        Class.forName("com.mysql.jdbc.Driver");
-
         try{
             
             con=cn.getConnection();
             ps=con.prepareStatement(sql);            
-            ps.setInt(1, ID);
-            ps.setString(2, usu1.getNombre());
-            ps.setString(3, usu1.getApellido());
-            ps.setString(4, usu1.getCorreo_electronico());
-            ps.setString(5, usu1.getNombre_de_usuario());
-            ps.setString(6, usu1.getContrasenha());
+            //ps.setInt(1, ID);
+            ps.setString(1, usu1.getNombre());
+            ps.setString(2, usu1.getApellido());
+            ps.setString(3, usu1.getCorreo_electronico());
+            ps.setString(4, usu1.getNombre_de_usuario());
+            ps.setString(5, usu1.getContrasenha());
             //rs=ps.executeQuery();
 
             System.out.println(ps);

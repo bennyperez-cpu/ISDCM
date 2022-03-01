@@ -90,7 +90,7 @@ public class servletUsuarios extends HttpServlet {
         String contrasenha=request.getParameter("password");
         String contrasenha2=request.getParameter("password2");
         
-        if(contrasenha==contrasenha2){
+        if(contrasenha.equals(contrasenha2)){
 
             usuario usu1 = new usuario();
             usu1.setNombre(nombre);
@@ -105,11 +105,11 @@ public class servletUsuarios extends HttpServlet {
                 //TODO: handle exception
                 e.printStackTrace();
             }    
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
 
         } else {
 
-            request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
+            response.sendRedirect("registroUsu.jsp");
         }
         
     }
