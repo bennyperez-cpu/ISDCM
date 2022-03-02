@@ -48,10 +48,13 @@ public class servletUsuarios extends HttpServlet {
                 usu.setContrasenha(contrasenha);
                 r=dao.validar(usu);
                 if(r==1){
+                    request.getSession().setAttribute("userName",nombre);
                     request.getRequestDispatcher("listadoVid.jsp").forward(request, response);
                 }else{
                     request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
                 }
+            } else {
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         
         }
