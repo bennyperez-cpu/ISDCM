@@ -1,11 +1,11 @@
 <%-- 
     Document   : Logout
     Created on : 25-feb-2022, 4:21:12
-    Author     : Benny Hammer Pérez Vásquez
+    Author     : Benny Hammer Pï¿½rez Vï¿½squez
 --%>
 
-<%
+<%--
     session.invalidate();
     response.sendRedirect("login.jsp");
-%>
+--%>
 

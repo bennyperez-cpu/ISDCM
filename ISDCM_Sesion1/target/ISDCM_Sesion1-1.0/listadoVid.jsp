@@ -111,8 +111,7 @@
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>${empty userSurnames ? '' : userSurnames} ${empty userName ? '' : userName}</h3>
-                    <h5>Email: ${empty userEmail ? '' : userEmail}</h5>
+                    <h3>${empty userName ? '' : userName}</h3>             
                     <h5>Username: ${empty username ? '' : username}</h5>
                 </div>
 
@@ -124,7 +123,7 @@
                 </ul>
                 <ul class='list-unstyled CTAs'>
                     <li>
-                        <a href="logout.jsp">Salir</a>
+                        <a href="servletUsuarios?accion=salir">Salir</a>
                     </li> 
                 </ul>
             </nav>

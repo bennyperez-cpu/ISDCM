@@ -20,11 +20,11 @@ public class usuarioDAO implements Validar{
     Conexion_DB cn = new Conexion_DB();
     PreparedStatement ps;
     ResultSet rs;
-    int r,ID;
     
     //Login de Usuario
     @Override
     public int validar(usuario usu){
+        int r=0;
         String sql="Select * from usuarios where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
        // String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         try{
