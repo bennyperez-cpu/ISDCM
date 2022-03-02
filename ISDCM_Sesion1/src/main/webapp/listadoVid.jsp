@@ -111,7 +111,7 @@
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>${empty userSurnames ? '' : userSurnames}, ${empty userName ? '' : userName}</h3>
+                    <h3>${empty userSurnames ? '' : userSurnames} ${empty userName ? '' : userName}</h3>
                     <h5>Email: ${empty userEmail ? '' : userEmail}</h5>
                     <h5>Username: ${empty username ? '' : username}</h5>
                 </div>
@@ -119,18 +119,12 @@
                 <ul class="list-unstyled components">
 
                     <li>
-                        <a href="videoSearch.jsp">Search Remote Videos</a>
-                    </li>
-                    <li>
-                        <a href="logged.jsp">Local videos</a>
-                    </li>
-                    <li>
-                        <a href="security.jsp">XML Document Encryption/Decryption</a>
+                        <a href="videoSearch.jsp">Buscar Videos</a>
                     </li>
                 </ul>
                 <ul class='list-unstyled CTAs'>
                     <li>
-                        <a href="logout.jsp">Log out</a>
+                        <a href="logout.jsp">Salir</a>
                     </li> 
                 </ul>
             </nav>
@@ -153,14 +147,14 @@
                             <div class='row row justify-content-md-center'>
                             <div class='col-3 border border-primary m-1'>
                                 <form action="${pageContext.request.contextPath}/servletSearch" method="POST">
-                                    <label for="author" >Author</label>
+                                    <label for="author" >Autor</label>
                                     <input name="author" type="text" class="form-control" id="author" placeholder="John Doe" required>
                                     <button name="action" value="search-author" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
                                 </form>
                             </div>
                             <div class='col-3 border border-primary m-1'>
                                 <form action="${pageContext.request.contextPath}/servletSearch" method="POST">
-                                    <label for="title" >Title</label>
+                                    <label for="title" >Título</label>
                                     <input name="title" type="text" class="form-control" id="title" placeholder="A Random Movie 2" required>
                                     <button name="action" value="search-title" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
                                 </form>
