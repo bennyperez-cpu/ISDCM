@@ -7,7 +7,7 @@ package isdcm.tools;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vásquez
  */
 public class Unsuported {
     

@@ -20,74 +20,91 @@ public class video {
     private Integer reproducciones;
     private String descripcion;
     private String formato;
-    
+
     
     public video() {
     }
 
-    public video(String titulo, String autor, Date fecha_creacion, Time duracion, String descripcion, String formato) {
+
+    public video(String titulo, String autor, Date fecha_creacion, Time duracion,
+            String descripcion, String formato) {
         this.titulo = titulo;
         this.autor = autor;
         this.fecha_creacion = fecha_creacion;
         this.duracion = duracion;
+//        this.reproducciones = reproducciones;
         this.descripcion = descripcion;
         this.formato = formato;
     }
-    
 
-    public String getTitle() {
+
+    public String getTitulo() {
         return titulo;
     }
 
-    public void setTitle(String titulo) {
+
+    public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    public String getAuthor() {
+
+    public String getAutor() {
         return autor;
     }
 
-    public void setAuthor(String autor) {
+
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public Date getCreatedAt() {
+
+    public Date getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setCreatedAt(Date fecha_creacion) {
+
+    public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
-    public Time getDuration() {
+
+    public Time getDuracion() {
         return duracion;
     }
 
-    public void setDuration(Time duracion) {
+
+    public void setDuracion(Time duracion) {
         this.duracion = duracion;
     }
 
-    public Integer getVisualizations() {
+
+    public Integer getReproducciones() {
         return reproducciones;
     }
 
-    public void setVisualizations(Integer reproducciones) {
+
+/*  public void setReproducciones(Integer reproducciones) {
         this.reproducciones = reproducciones;
     }
+*/
 
-    public String getDescription() {
+
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescription(String descripcion) {
+
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getFormat() {
+
+    public String getFormato() {
         return formato;
     }
 
-    public void setFormat(String formato) {
+
+    public void setFormato(String formato) {
         this.formato = formato;
     }
 

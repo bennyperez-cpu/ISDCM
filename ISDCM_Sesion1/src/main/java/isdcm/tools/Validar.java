@@ -8,7 +8,7 @@ import isdcm.model.usuario;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vasquez
  */
 public interface Validar {
     public int validar(usuario usu);

@@ -17,20 +17,20 @@
         
         <div class="title_header">Añade tus Videos</div>
         <div class="container col-lg-3">
-            <form>
+            <form action= "servletRegistroVid" method ="post">
                 <div class="form-group all ">
-                    <label for="title" style="float: left">Título</label>
-                    <input name="title" type="text" class="form-control" id="title" placeholder="Tu Video" required>
-                    <label for="author" style="float: left">Autor</label>
-                    <input name="author" type="text" class="form-control" id="author" placeholder="Steven Spielberg" required>
-                    <label for="date" style="float: left">Fecha de Creación</label>
-                    <input name="date" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                   
-                    <label for="duration" style="float: left">Duración</label>
-                    <input name="duration" type="text" class="form-control" id="duration" required title="hh:mm:ss" pattern="^(?:(?:([01]?\d|2[0-3]):)([0-5]?\d):)([0-5]?\d)$" placeholder="2:35:00">
-                    <label for="description" style="float: left">Descripción</label>
-                    <input name="description" type="text" class="form-control" id="description" required placeholder="Avengers Era de Ultrón, El increible Hulk... ">
-                    <label for="format" style="float: left">Formato</label>
-                    <input name="format" type="text" class="form-control" required id="duration" placeholder="MOV" pattern=".{0,5}" title="No más de 5 caractéres">
+                    <label for="titulo" style="float: left">Título</label>
+                    <input name="titulo" type="text" class="form-control" id="title" placeholder="Tu Video" required>
+                    <label for="autor" style="float: left">Autor</label>
+                    <input name="autor" type="text" class="form-control" id="author" placeholder="Steven Spielberg" required>
+                    <label for="fecha_de_creacion" style="float: left">Fecha de Creación</label>
+                    <input name="fecha_de_creacion" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                   
+                    <label for="duracion" style="float: left">Duración</label>
+                    <input name="duracion" type="text" class="form-control" id="duration" required title="hh:mm:ss" pattern="^(?:(?:([01]?\d|2[0-3]):)([0-5]?\d):)([0-5]?\d)$" placeholder="2:35:00">
+                    <label for="descripcion" style="float: left">Descripción</label>
+                    <input name="descripcion" type="text" class="form-control" id="description" required placeholder="Avengers Era de Ultrón, El increible Hulk... ">
+                    <label for="formato" style="float: left">Formato</label>
+                    <input name="formato" type="text" class="form-control" required id="duration" placeholder="MOV" pattern=".{0,5}" title="No más de 5 caractéres">
 
                 </div>
                 <div>

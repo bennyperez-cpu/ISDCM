@@ -22,88 +22,6 @@
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-        <%--  <style>
-                    body {
-                font-family: 'Poppins', sans-serif;
-                background: #fafafa;
-            }
-            /* De aquí para abajo son cosas de la sidebar: https://bootstrapious.com/p/bootstrap-sidebar*/
-            .wrapper {
-                display: flex;
-                width: 100%;
-                align-items: stretch;
-            }
-            #sidebar.closed {
-                margin-left: -250px;
-            }
-            a[data-toggle="collapse"] {
-                position: relative;
-            }
-            .dropdown-toggle::after {
-                display: block;
-                position: absolute;
-                top: 50%;
-                right: 20px;
-                transform: translateY(-50%);
-            }
-            p {
-                font-family: 'Poppins', sans-serif;
-                font-size: 1.1em;
-                font-weight: 300;
-                line-height: 1.7em;
-                color: #999;
-            }
-            a, a:hover, a:focus {
-                color: inherit;
-                text-decoration: none;
-                transition: all 0.3s;
-            }
-            #sidebar {
-                background: #7386D5;
-                color: #fff;
-                transition: all 0.3s;
-                min-width: 250px;
-                max-width: 250px;
-                min-height: 100vh;
-                /*margin-right: 5%;*/
-            }
-            #sidebar .sidebar-header {
-                padding: 20px;
-                background: #6d7fcc;
-            }
-            #sidebar ul.components {
-                padding: 20px 0;
-                border-bottom: 1px solid #47748b;
-            }
-            #sidebar ul p {
-                color: #fff;
-                padding: 10px;
-            }
-            #sidebar ul li a {
-                padding: 10px;
-                font-size: 1.1em;
-                display: block;
-            }
-            #sidebar ul li a:hover {
-                color: #7386D5;
-                background: #fff;
-            }
-            #sidebar ul li.active > a, a[aria-expanded="true"] {
-                color: #fff;
-                background: #6d7fcc;
-            }
-            ul ul a {
-                font-size: 0.9em !important;
-                padding-left: 30px !important;
-                background: #6d7fcc;
-            }
-            .list_title_header{
-                text-align: center;
-                align-items: center;
-                font-size: 40px;
-                width: 100%;
-            }
-        </style>  --%> 
         
     </head>
     <body>
@@ -111,7 +29,8 @@
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>${empty userName ? '' : userName}</h3>             
+                    <h3>${empty userName ? '' : userName}</h3>
+                    <h5>Email: ${empty userEmail ? '' : userEmail}</h5>
                     <h5>Username: ${empty username ? '' : username}</h5>
                 </div>
 
@@ -123,7 +42,7 @@
                 </ul>
                 <ul class='list-unstyled CTAs'>
                     <li>
-                        <a href="servletUsuarios?accion=salir">Salir</a>
+                        <a href="servletUsuarios?accion=Salir">Salir</a>
                     </li> 
                 </ul>
             </nav>
@@ -140,75 +59,60 @@
                 </nav>
                 <div name="BODY" style="width:100%;" class="col-12">
                     <div>
-                        <div class='list_title_header'>Remote Videos</div>
+                        <div class='list_title_header'>Videos</div>
                         
-                        <% if (session.getAttribute("remoteVideos") == null) { %>
+                        <% if (session.getAttribute("videos_list") == null) { %>
                             <div class='row row justify-content-md-center'>
                             <div class='col-3 border border-primary m-1'>
-                                <form action="${pageContext.request.contextPath}/servletSearch" method="POST">
+                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="author" >Autor</label>
                                     <input name="author" type="text" class="form-control" id="author" placeholder="John Doe" required>
-                                    <button name="action" value="search-author" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
+                                    <button name="action" value="search-autor" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
                                 </form>
                             </div>
                             <div class='col-3 border border-primary m-1'>
-                                <form action="${pageContext.request.contextPath}/servletSearch" method="POST">
+                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="title" >Título</label>
                                     <input name="title" type="text" class="form-control" id="title" placeholder="A Random Movie 2" required>
-                                    <button name="action" value="search-title" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
+                                    <button name="action" value="search-titulo" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
                                 </form>
                             </div>
                             <div class='col-3 border border-primary m-1'>
-                                <form action="${pageContext.request.contextPath}/servletSearch" method="POST">
+                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="date" style="float: left">Fecha de Creación</label>
                                     <input name="date" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                                   
-                                    <button name="action" value="search-date" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
+                                    <button name="action" value="search-fecha" type="submit" class="btn btn-primary btn-sm m-2">Search</button>
                                 </form>
                             </div>
                         </div>
                         <% }else{ %>
-                            <form action="${pageContext.request.contextPath}/servletSearch" method="post">
+                            <form action="${pageContext.request.contextPath}/servletBusqVid" method="post">
                                 <button name="action" value="change-search" type="submit" class="btn btn-primary btn-sm m-2">Change Video Search</button>
                             </form>
                             <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">Duration</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Visualizations</th>
-                                    <th scope="col">Format</th>
-                                    <th scope="col">Uploaded</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">Título</th>
+                                    <th scope="col">Autor</th>
+                                    <th scope="col">Duracion</th>
+                                    <th scope="col">descripcion</th>
+                                    <th scope="col">Reproducciones</th>
+                                    <th scope="col">Formato</th>
+                                    <th scope="col">Fecha de Creación</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="video" items="${remoteVideos}">
+                                <c:forEach var="video" items="${videos_list}">
                                     <tr>
-                                        <td>${video.getTitle()}</td> 
-                                        <td>${video.getAuthor()}</td>
-                                        <td>${video.getDuration()}</td> 
-                                        <td>${video.getDescription()}</td>
-                                        <td>${video.getVisualizations()}</td>
-                                        <td>${video.getFormat()}</td>
-                                        <td>${video.getCreatedAt()}</td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${video.getPath()!='N/A'}">
-                                                    <form action="${pageContext.request.contextPath}/servletVideos" method="post">
-                                                        <button name="action" value="play-video" data-toggle="tooltip" title="${video.getPath()}" type="submit" class="btn btn-primary btn-sm m-2">Play video</button>
-                                                        <input type="hidden" name="videoPath" value="${video.getPath()}" />
-                                                        <input type="hidden" name="videoFormat" value="${video.getFormat()}" />
-                                                        <input type="hidden" name="videoTitle" value="${video.getTitle()}" />
-                                                        <input type="hidden" name="location" value="remote" />
-                                                    </form>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <button class="btn btn-secondary btn-sm m-2" disabled>Path not defined</button>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
+                                        <td>${video.getTitulo()}</td> 
+                                        <td>${video.getAutor()}</td>
+                                        <td>${video.getDuracion()}</td> 
+                                        <td>${video.getDescripcion()}</td>
+                                        <td>${video.getReproducciones()}</td>
+                                        <td>${video.getFormato()}</td>
+                                        <td>${video.getFecha_creacion()}</td>
+    
                                     </tr> 
                                 </c:forEach>
                             </tbody>

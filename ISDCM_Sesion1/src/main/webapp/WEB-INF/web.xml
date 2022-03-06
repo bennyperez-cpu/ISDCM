@@ -11,6 +11,10 @@
         <servlet-name>servletRegistroVid</servlet-name>
         <servlet-class>isdcm.controller.servletRegistroVid</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servletBusqVid</servlet-name>
+        <servlet-class>isdcm.controller.servletBusqVid</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servletUsuarios</servlet-name>
         <url-pattern>/servletUsuarios</url-pattern>
@@ -18,6 +22,10 @@
     <servlet-mapping>
         <servlet-name>servletRegistroVid</servlet-name>
         <url-pattern>/servletRegistroVid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletBusqVid</servlet-name>
+        <url-pattern>/servletBusqVid</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

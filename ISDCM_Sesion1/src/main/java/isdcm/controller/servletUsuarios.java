@@ -42,13 +42,13 @@ public class servletUsuarios extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
             if(accion.equals("Ingresar")){
-                String usuario=request.getParameter("txtnom");
+                String nombre=request.getParameter("txtnom");
                 String contrasenha=request.getParameter("password");
-                usu.setNombre_de_usuario(usuario);
+                usu.setNombre_de_usuario(nombre);
                 usu.setContrasenha(contrasenha);
                 r=dao.validar(usu);
                 if(r==1){
-                    request.getSession().setAttribute("username",usuario);
+                    request.getSession().setAttribute("userName",nombre);
                     request.getRequestDispatcher("listadoVid.jsp").forward(request, response);
                 }else{
                     request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
