@@ -43,7 +43,7 @@ public class videoDAO {
         return true;
     }
 
-    public static List<video> getVideos() {
+    public static List<video> getVideos(String parametro) {
 
         Connection con;
         Conexion_DB cn = new Conexion_DB();
@@ -54,7 +54,7 @@ public class videoDAO {
         ArrayList<video> videos = new ArrayList<video>();
         try {
             con = cn.getConnection();
-            ps = con.prepareStatement("SELECT * FROM VIDEOS");
+            ps = con.prepareStatement("SELECT " + parametro + " FROM VIDEOS");
             rs = ps.executeQuery();
             while (rs.next()) {
                 video video1 = new video();

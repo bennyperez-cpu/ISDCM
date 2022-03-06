@@ -78,7 +78,7 @@ public class servletRegistroVid extends HttpServlet {
     }
 
     public void addVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        log("video_added");
+        log("Añadiendo Video");
         String titulo = request.getParameter("titulo");
         String autor = request.getParameter("autor");
         String fecha_cre = request.getParameter("fecha");
@@ -90,9 +90,9 @@ public class servletRegistroVid extends HttpServlet {
         
         video video1 = new video(titulo,autor,fecha,duracion,descripcion,formato);
         videoDAO.registrovid(video1);
-        List<video> videos = videoDAO.getVideos();
-        request.getSession().setAttribute("videos", videos);
-        response.sendRedirect("logged.jsp");
+        List<video> videos = videoDAO.getVideos(titulo);
+        request.getSession().setAttribute("videos_list", videos);
+        response.sendRedirect("listadoVid.jsp");
         
     }
 

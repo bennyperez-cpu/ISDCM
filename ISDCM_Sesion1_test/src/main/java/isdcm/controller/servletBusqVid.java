@@ -7,10 +7,15 @@ package isdcm.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import isdcm.model.video;
+import isdcm.tools.videoDAO;
 
 /**
  *
@@ -29,19 +34,7 @@ public class servletBusqVid extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servletBusqVid</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servletBusqVid at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+ 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,8 +63,44 @@ public class servletBusqVid extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+                System.out.println(request);
+                String action = request.getParameter("action");
+                String parametro;
+        
+                switch (action) {
+                    case "search-autor":
+                        parametro = "AUTOR";
+                        search(request,response,parametro);
+                        break;
+                    case "search-titulo":
+                        parametro = "TITULO";
+                        search(request,response,parametro);
+                        break;
+                    case "search-fecha":
+                        parametro = "FECHA_DE_CREACION";
+                        search(request,response,parametro);
+                        break;
+                    case "change-search":
+                        log("change-search");
+                        request.getSession().removeAttribute("videos_list");
+                        response.sendRedirect("listadoVid.jsp");
+                        break;
+                    
+                    default:
+                        break;
+                }
+            }
+        
+            private void search(HttpServletRequest request, HttpServletResponse response, String parametro) throws IOException {
+                log("Buscando por" + parametro);              
+                List<video> videos = videoDAO.getVideos(parametro);
+                request.getSession().setAttribute("videos_list", videos);
+                response.sendRedirect("listadoVid.jsp");
+
+            }
+        
+            
+    
 
     /**
      * Returns a short description of the servlet.
