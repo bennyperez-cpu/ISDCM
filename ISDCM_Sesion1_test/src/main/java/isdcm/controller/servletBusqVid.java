@@ -61,24 +61,29 @@ public class servletBusqVid extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 System.out.println(request);
                 String action = request.getParameter("action");
+                
                 String parametro;
+                String value;
         
                 switch (action) {
                     case "search-autor":
                         parametro = "AUTOR";
-                        search(request,response,parametro);
+                        value = request.getParameter("author");
+                        search(request,response,parametro,value);
                         break;
                     case "search-titulo":
                         parametro = "TITULO";
-                        search(request,response,parametro);
+                        value = request.getParameter("title");
+                        search(request,response,parametro,value);
                         break;
                     case "search-fecha":
                         parametro = "FECHA_DE_CREACION";
-                        search(request,response,parametro);
+                        value = request.getParameter("date");
+                        search(request,response,parametro,value);
                         break;
                     case "change-search":
                         log("change-search");
@@ -91,9 +96,9 @@ public class servletBusqVid extends HttpServlet {
                 }
             }
         
-            private void search(HttpServletRequest request, HttpServletResponse response, String parametro) throws IOException {
+            public void search(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
                 log("Buscando por" + parametro);              
-                List<video> videos = videoDAO.getVideos(parametro);
+                List<video> videos = videoDAO.getVideos(parametro,value);
                 request.getSession().setAttribute("videos_list", videos);
                 response.sendRedirect("listadoVid.jsp");
 

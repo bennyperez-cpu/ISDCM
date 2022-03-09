@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class videoDAO {
-
+        static Connection con;
+        static Conexion_DB cn = new Conexion_DB();
+        static PreparedStatement ps;
+        static ResultSet rs;
+        static int r,ID;
 
     
-    public static boolean registrovid(video video_nuevo) {
-        Connection con;
-        Conexion_DB cn = new Conexion_DB();
-        PreparedStatement ps;
-        ResultSet rs;
-        int r,ID;
+    public int registrovid(video video_nuevo) throws ClassNotFoundException {
+        
 
-        String sql="INSERT INTO VIDEOS VALUES (?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO VIDEOS" + "  (TITULO, AUTOR, FECHA_DE_CREACION, DURACION, NUMERO_DE_REPRODUCCIONES, DESCRIPCION, FORMATO) VALUES" +" (?, ?, ?, ?, ?, ?, ?)";
         int result = 0;
 
         try {
@@ -39,22 +39,26 @@ public class videoDAO {
 
         } catch (SQLException e) {
             printSQLException(e);
+            return 0;
         }
-        return true;
+        return 1;
     }
 
-    public static List<video> getVideos(String parametro) {
+    public static List<video> getVideos(String parametro, String value) {
 
-        Connection con;
-        Conexion_DB cn = new Conexion_DB();
-        PreparedStatement ps;
-        ResultSet rs;
-        int r,ID;
 
         ArrayList<video> videos = new ArrayList<video>();
         try {
+            
+  /*      Connection con;
+        Conexion_DB cn = new Conexion_DB();
+        PreparedStatement ps;
+        ResultSet rs;
+        int r,ID;*/
+            
             con = cn.getConnection();
-            ps = con.prepareStatement("SELECT " + parametro + " FROM VIDEOS");
+            ps = con.prepareStatement("Select * from videos where " + parametro + " =?");
+            ps.setString(1,value);
             rs = ps.executeQuery();
             while (rs.next()) {
                 video video1 = new video();

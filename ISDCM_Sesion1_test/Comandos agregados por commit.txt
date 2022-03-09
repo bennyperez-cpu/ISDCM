@@ -5,12 +5,12 @@ correo_electronico VARCHAR(50) NOT NULL,
 nombre_de_usuario VARCHAR(50) NOT NULL,
 contrasenha VARCHAR(50) NOT NULL);
 
-CREATE TABLE videos(id_vid INT not null primary key generated always as identity (start with 1, increment by 1),
+CREATE TABLE videos3(id_vid INT not null primary key generated always as identity (start with 1, increment by 1),
 titulo VARCHAR(50) NOT NULL,
 autor VARCHAR(50) NOT NULL,
-fecha_de_creacion VARCHAR(50) NOT NULL,
-duracion VARCHAR(50) NOT NULL,
-numero_de_reproducciones VARCHAR(50) NOT NULL,
+fecha_de_creacion date NOT NULL,
+duracion Time NOT NULL,
+numero_de_reproducciones INT NOT NULL,
 descripcion VARCHAR(50) NOT NULL,
 formato VARCHAR(50) NOT NULL);
 
@@ -30,3 +30,6 @@ ALTER TABLE table_name ADD column_name datatype;
    "EMAIL" VARCHAR(100),
    "COMM" VARCHAR(450)    
 );
+
+
+SELECT * FROM ISDCM.VIDEOS WHERE TITULO='ascdA'

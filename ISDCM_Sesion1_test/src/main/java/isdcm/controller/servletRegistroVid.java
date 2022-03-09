@@ -6,6 +6,7 @@
 package isdcm.controller;
 
 import isdcm.model.video;
+import isdcm.tools.usuarioDAO;
 import isdcm.tools.videoDAO;
 
 import java.io.IOException;
@@ -13,8 +14,11 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alumne
  */
+@WebServlet(name = "servletRegistroVid", urlPatterns = {"/servletRegistroVid"})
 public class servletRegistroVid extends HttpServlet {
 
     /**
@@ -36,6 +41,7 @@ public class servletRegistroVid extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                response.setContentType("text/html;charset=UTF-8");
 
     }
 
@@ -78,19 +84,31 @@ public class servletRegistroVid extends HttpServlet {
     }
 
     public void addVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        log("Añadiendo Video");
+        log("Anhadiendo Video");
+        videoDAO videoDAO = new videoDAO();
+        video video1 = new video();
         String titulo = request.getParameter("titulo");
         String autor = request.getParameter("autor");
-        String fecha_cre = request.getParameter("fecha");
+        String fecha_cre = request.getParameter("fecha_de_creacion");
         Date fecha = Date.valueOf(fecha_cre);
         String tiempo = request.getParameter("duracion");
         Time duracion = Time.valueOf(tiempo);
         String descripcion = request.getParameter("descripcion");
         String formato = request.getParameter("formato");
         
-        video video1 = new video(titulo,autor,fecha,duracion,descripcion,formato);
-        videoDAO.registrovid(video1);
-        List<video> videos = videoDAO.getVideos(titulo);
+        video1.setTitulo(titulo);
+        video1.setAutor(autor);
+        video1.setDuracion(duracion);
+        video1.setDescripcion(descripcion);
+        video1.setFormato(formato);
+
+        
+        try {
+            videoDAO.registrovid(video1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(servletRegistroVid.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<video> videos = videoDAO.getVideos("TITULO",titulo);
         request.getSession().setAttribute("videos_list", videos);
         response.sendRedirect("listadoVid.jsp");
         

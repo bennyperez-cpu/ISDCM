@@ -40,6 +40,15 @@
                         <a href="videoSearch.jsp">Buscar Videos</a>
                     </li>
                 </ul>
+                
+                <ul class="list-unstyled components">
+
+                    <li>
+                        <a href="registroVid.jsp">Subir Videos</a>
+                    </li>
+                </ul>
+                
+                
                 <ul class='list-unstyled CTAs'>
                     <li>
                         <a href="servletUsuarios?accion=Salir">Salir</a>

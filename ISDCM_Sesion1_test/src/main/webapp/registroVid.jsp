@@ -17,7 +17,7 @@
         
         <div class="title_header">Añade tus Videos</div>
         <div class="container col-lg-3">
-            <form action= "servletRegistroVid" method ="post">
+            <form action= "${pageContext.request.contextPath}/servletRegistroVid" method ="post">
                 <div class="form-group all ">
                     <label for="titulo" style="float: left">Título</label>
                     <input name="titulo" type="text" class="form-control" id="title" placeholder="Tu Video" required>
