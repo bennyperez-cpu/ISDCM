@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Ingresa tus Datos</title>
         <link href="css/Estilos_registroUsu_Vid.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style_button.css" rel="stylesheet" media="all"/>
+        <script src="https://kit.fontawesome.com/4e646a13f9.js" crossorigin="anonymous"></script>
+        <link href="popup.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body>
         
@@ -35,8 +38,15 @@
                     <input name="password2" type="password" class="form-control" id="passwordRepeatRegisterInput" placeholder="************"  required oninput="check()">
                 </div>
                 <div class="form-group text-center">
-                    <button name="action" value="register" type="submit" class="btn btn-primary btn-lg">Register</button>
-                </div>
+                    <br>
+                    <button name="action" value="register" type="submit" class="button" style="float: left "><i class="fa-solid fa-user-plus"></i> Registrar</button>
+                    <button type="button" onclick="location.href='login.jsp'" class="button" style="float: right " ><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+                    <br>
+                </div>                
+               <%--<% if (session.getAttribute("parm") == 2) { %>
+                <%} else { %>
+                <% } %>
+               --%>
                 <div class="form-group all">
                     <label style="margin-top: 10px; font-size: 20px; background: transparent; border: 0px; text-align: center; color: red;">${empty infoLabel ? '' : infoLabel}</label>
                 </div>

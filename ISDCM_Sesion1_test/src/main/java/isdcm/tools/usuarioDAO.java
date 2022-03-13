@@ -25,6 +25,7 @@ public class usuarioDAO implements Validar{
     //Login de Usuario
     @Override
     public int validar(usuario usu){
+        r=0;
         String sql="Select * from usuarios where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
        // String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         try{
@@ -59,6 +60,43 @@ public class usuarioDAO implements Validar{
         }*/
         
     }
+    
+    public int validar_reg(usuario usu){
+        r=0;
+
+ 	String sql="Select * from usuarios where NOMBRE_DE_USUARIO=?";
+       // String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1,usu.getNombre_de_usuario());
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                r=r+1;
+                usu.setNombre_de_usuario(rs.getString("NOMBRE_DE_USUARIO"));
+                
+            }    
+            if(r==1){
+                return 1;
+            }else{
+                return 0;
+            }
+
+                    
+        }catch (Exception e){
+            System.out.println(e.getStackTrace());
+            return 0;
+        } /*finally{
+            try{
+                if(con!= null)
+                    con.close();
+            } catch (Exception e){
+                System.out.println(e.getStackTrace());
+            }
+        }*/
+        
+    }    
     
     //Registro de usuario
     public int registerusu(usuario usu1) throws ClassNotFoundException {

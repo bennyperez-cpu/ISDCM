@@ -27,12 +27,12 @@ public class video {
 
 
     public video(String titulo, String autor, Date fecha_creacion, Time duracion,
-            String descripcion, String formato) {
+            Integer reproducciones, String descripcion, String formato) {
         this.titulo = titulo;
         this.autor = autor;
         this.fecha_creacion = fecha_creacion;
         this.duracion = duracion;
-//        this.reproducciones = reproducciones;
+        this.reproducciones = reproducciones;
         this.descripcion = descripcion;
         this.formato = formato;
     }
@@ -83,10 +83,10 @@ public class video {
     }
 
 
-/*  public void setReproducciones(Integer reproducciones) {
+  public void setReproducciones(Integer reproducciones) {
         this.reproducciones = reproducciones;
     }
-*/
+
 
 
     public String getDescripcion() {

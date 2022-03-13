@@ -96,13 +96,13 @@ public class servletBusqVid extends HttpServlet {
                 }
             }
         
-            public void search(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
-                log("Buscando por" + parametro);              
-                List<video> videos = videoDAO.getVideos(parametro,value);
-                request.getSession().setAttribute("videos_list", videos);
-                response.sendRedirect("listadoVid.jsp");
+    public void search(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
+        log("Buscando por" + parametro);              
+        List<video> videos = videoDAO.getVideos(parametro,value);
+        request.getSession().setAttribute("videos_list", videos);
+        response.sendRedirect("listadoVid.jsp");
 
-            }
+    }
         
             
     

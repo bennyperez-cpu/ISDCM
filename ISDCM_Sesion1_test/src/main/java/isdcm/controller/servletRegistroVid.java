@@ -30,6 +30,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "servletRegistroVid", urlPatterns = {"/servletRegistroVid"})
 public class servletRegistroVid extends HttpServlet {
 
+    videoDAO videoDAO = new videoDAO();
+    video video1 = new video();
+    videoDAO videoDAO_reg = new videoDAO();
+    video video_reg = new video();
+    int r=0;    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -83,14 +89,14 @@ public class servletRegistroVid extends HttpServlet {
         }
     }
 
-    public void addVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+/*    public void addVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         log("Anhadiendo Video");
         videoDAO videoDAO = new videoDAO();
         video video1 = new video();
         String titulo = request.getParameter("titulo");
         String autor = request.getParameter("autor");
-        String fecha_cre = request.getParameter("fecha_de_creacion");
-        Date fecha = Date.valueOf(fecha_cre);
+        //String fecha_cre = request.getParameter("fecha_de_creacion");
+        //Date fecha = Date.valueOf(fecha_cre);
         String tiempo = request.getParameter("duracion");
         Time duracion = Time.valueOf(tiempo);
         String descripcion = request.getParameter("descripcion");
@@ -113,7 +119,55 @@ public class servletRegistroVid extends HttpServlet {
         response.sendRedirect("listadoVid.jsp");
         
     }
+*/
 
+    protected void addVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        log("Anhadiendo Video");
+        
+        String titulo = request.getParameter("titulo");
+        String autor = request.getParameter("autor");
+        //String fecha_cre = request.getParameter("fecha_de_creacion");
+        //ate fecha = Date.valueOf(fecha_cre);
+        String tiempo = request.getParameter("duracion");
+        Time duracion = Time.valueOf(tiempo);
+        String descripcion = request.getParameter("descripcion");
+        String formato = request.getParameter("formato");
+        
+        String accion=request.getParameter("action");
+        if(accion.equals("add-video")){
+            video_reg.setTitulo(titulo);
+            
+            r=videoDAO_reg.validar_vid(video_reg);
+            if(r==1){
+                video1.setTitulo(titulo);
+                video1.setAutor(autor);
+                video1.setDuracion(duracion);
+                video1.setDescripcion(descripcion);
+                video1.setFormato(formato);
+
+                try {
+                    videoDAO.registrovid(video1);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(servletRegistroVid.class.getName()).log(Level.SEVERE, null, ex);
+                }  
+                
+                List<video> videos = videoDAO.getVideos("TITULO",titulo);
+                request.getSession().setAttribute("videos_list", videos);
+                response.sendRedirect("listadoVid.jsp");
+
+
+            }else{
+                log("Video Repetido");
+                List<video> videos = videoDAO.getVideos("TITULO",titulo);
+                request.getSession().setAttribute("videos_list", videos);
+                response.sendRedirect("listadoVid.jsp");
+            }
+        } else {
+            response.sendRedirect("listadoVid.jsp");
+        }
+
+        
+    }    
 
 
     /**

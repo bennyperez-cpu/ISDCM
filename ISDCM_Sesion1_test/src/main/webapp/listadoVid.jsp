@@ -108,7 +108,7 @@
                                     <th scope="col">Reproducciones</th>
                                     <th scope="col">Formato</th>
                                     <th scope="col">Fecha de Creación</th>
-                                    <th scope="col">Acciones</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
