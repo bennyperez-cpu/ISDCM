@@ -87,13 +87,7 @@ public int validar_vid(video vid){
 
         ArrayList<video> videos = new ArrayList<video>();
         try {
-            
-  /*      Connection con;
-        Conexion_DB cn = new Conexion_DB();
-        PreparedStatement ps;
-        ResultSet rs;
-        int r,ID;*/
-            
+                      
             con = cn.getConnection();
             ps = con.prepareStatement("Select * from videos where " + parametro + " =?");
             ps.setString(1,value);

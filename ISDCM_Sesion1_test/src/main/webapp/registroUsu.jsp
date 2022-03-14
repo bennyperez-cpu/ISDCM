@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,11 +43,50 @@
                     <button name="action" value="register" type="submit" class="button" style="float: left "><i class="fa-solid fa-user-plus"></i> Registrar</button>
                     <button type="button" onclick="location.href='login.jsp'" class="button" style="float: right " ><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
                     <br>
-                </div>                
-               <%--<% if (session.getAttribute("parm") == 2) { %>
+                    <%--<%
+                        //int parm = Integer.parseInt(request.getParameter("parm"));
+                        if (request.getAttribute("parm")!= null){
+                    %>    
+                        <div id ="popup" class="overlay">
+                            <div id='popupBody'>
+                                <h2>CUIDADO!</h2>
+                                <a id="cerrar" href="#">&times; </a>
+                                <div class="popupContent">
+                                    <p>La contraseña no coincide</p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }%>
+                    --%>
+                </div>
+                <%--<c:out value="${parm}"/>
+                <c:when test="">--%>
+                <%
+                  //int parm = Integer.parseInt(request.getParameter("parm"));
+                  if (request.getAttribute("parm")!= null){
+                      //String parm = (String)request.getAttribute("parm");
+                      //switch (parm){
+                          //case "2":                            
+                %>    
+                            <div id ="popup" class="overlay">
+                                <div id='popupBody'>
+                                    <h2>CUIDADO!</h2>
+                                    <a id="cerrar" href="registroUsu.jsp">&times; </a>
+                                    <div class="popupContent">
+                                        <p>La contraseña no coincide</p>
+                                    </div>
+                                </div>
+                            </div>
+                     <% 
+                          //default:
+                            //break;
+                        //}%>
+                <% }%>
+                <%-- <% if (session.getAttribute("parm") == null) { %>
                 <%} else { %>
                 <% } %>
-               --%>
+                
+                --%>
                 <div class="form-group all">
                     <label style="margin-top: 10px; font-size: 20px; background: transparent; border: 0px; text-align: center; color: red;">${empty infoLabel ? '' : infoLabel}</label>
                 </div>

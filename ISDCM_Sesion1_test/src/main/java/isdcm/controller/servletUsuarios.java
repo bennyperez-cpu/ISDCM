@@ -126,7 +126,8 @@ public class servletUsuarios extends HttpServlet {
                     } else {
                         p = 2;
                        // response.sendRedirect("registroUsu.jsp");
-                        request.getSession().setAttribute("parm", p);
+                        String parm = request.getParameter("p");
+                        request.setAttribute("parm", parm);
                         RequestDispatcher rd = request.getRequestDispatcher("registroUsu.jsp");
                         rd.forward(request, response);
                     }
