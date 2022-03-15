@@ -16,6 +16,21 @@
         <link href="css/style_button.css" rel="stylesheet" media="all"/>
         <script src="https://kit.fontawesome.com/4e646a13f9.js" crossorigin="anonymous"></script>
         <link href="popup.css" rel="stylesheet" type="text/css" /> 
+        
+        <style>
+            body{
+                margin: 0;
+                padding: 0;     
+                background-image: url("img/registro_usr.jpg");
+                background-size: cover;
+                background-position: center;
+                font-family: sans-serif;    
+                background-color: #32baf3;
+            }
+            
+
+        </style>
+        
     </head>
     <body>
         

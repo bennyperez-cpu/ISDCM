@@ -26,6 +26,37 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         
         <style>
+            .fondo{
+                margin: 0;
+                padding: 0;     
+                background-image: url("img/video_list.jpg");
+                background-size: auto;
+                background-position: center;
+                font-family: sans-serif;    
+                background-color: #32baf3;
+               
+                
+            }
+            
+            .container1{
+                background-color:silver;
+                border-radius: 10px;
+                padding:25px;
+                margin-top: 80px
+            }
+            .container2{
+                background-color:silver;
+                
+                border-radius: 10px;
+                padding:25px;
+                margin-top: 80px
+            }
+            .container3{
+                background-color:silver;
+                border-radius: 10px;
+                padding:25px;
+                margin-top: 80px
+            }
 
         </style>
         
@@ -39,13 +70,6 @@
                    <%-- <h3>${empty userName ? '' : userName}</h3> --%>
                     <h5>Usuario: ${empty userName ? '' : userName}</h5>
                 </div>
-
-                <ul class="list-unstyled components text-center">
-
-                    <li>
-                        <a href="listadoVid.jsp" action = removeAttribute("videos_list")>Buscar Videos</a> 
-                    </li>
-                </ul>
                 
                 <ul class="list-unstyled components  text-center">
 
@@ -63,7 +87,7 @@
             </nav>
 
             <!-- Page Content -->
-            <div id="content">
+            <div class="fondo   text-center" id="content">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid">
                         <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -74,20 +98,20 @@
                 </nav>
                 <div name="BODY" style="width:100%;" class="col-12">
                     <div>
-                        <div class='list_title_header'>Videos</div>
+                        <div class='list_title_header   text-center'>Videos</div>
                         
                         <% if (session.getAttribute("videos_list") == null) { %>
                             <div class='row row justify-content-md-center'>
-                            <div class='col-3 border border-primary m-1'>
+                            <div class='container1 col-3 border border-primary m-1'>
                                 <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="author" >Autor</label>
                                     <input name="author" type="text" class="form-control" id="author" placeholder="John Doe" required>
                                     <br>
-                                    <button name="action" value="search-autor" type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                                    <button name="action" value="search-autor" type="submit" class="button" ><i class="fa-solid fa-magnifying-glass" opacity="1"></i> Search</button>
                                     
                                 </form>
                             </div>
-                            <div class='col-3 border border-primary m-1'>
+                            <div class='container2 col-3 border border-primary m-1   text-center'>
                                 <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="title" >Título</label>
                                     <input name="title" type="text" class="form-control" id="title" placeholder="A Random Movie 2" required>
@@ -96,7 +120,7 @@
                                     
                                 </form>
                             </div>
-                            <div class='col-3 border border-primary m-1'>
+                            <div class='container3 col-3 border border-primary m-1   text-center'>
                                 <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
                                     <label for="date" style="float: left">Fecha de Creación</label>
                                     <input name="date" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                                   
@@ -110,7 +134,7 @@
                             <form action="${pageContext.request.contextPath}/servletBusqVid" method="post">
                                 <button name="action" value="change-search" type="submit" class="btn btn-primary btn-sm m-2">Change Video Search</button>
                             </form>
-                            <table class="table">
+                            <table class="table   text-center">
                             <thead>
                                 <tr>
                                     <th scope="col">Título</th>

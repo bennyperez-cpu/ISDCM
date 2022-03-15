@@ -14,6 +14,19 @@
         <link href="css/Estilos_registroUsu_Vid.css" rel="stylesheet" type="text/css"/>
         <link href="css/style_button.css" rel="stylesheet" media="all"/>
         <script src="https://kit.fontawesome.com/4e646a13f9.js" crossorigin="anonymous"></script>
+        
+        <style>
+            body{    
+                margin: 0;
+                padding: 0;     
+                background-image: url("img/Fondo_video2.jpg");
+                background-size: cover;
+                background-position: center;
+                font-family: sans-serif;    
+                background-color: #32baf3;
+            }
+        </style>
+        
     </head>
     <body>
               
@@ -38,7 +51,7 @@
                 <div>
                     <br>
                     <button name="action" value="add-video" type="submit" class="button"><i class="fa-solid fa-upload"></i> Subir Video</button>
-                    <button type="button" onclick="location.href='listadoVid.jsp'" class="button" style="float: right " ><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+                    <button type="button" onclick="location.href='listadoVid.jsp'" class="button" style="float: right " ><i class="fa-solid fa-right-from-bracket"></i> Videos</button>
                 </div>
              
                 <div>

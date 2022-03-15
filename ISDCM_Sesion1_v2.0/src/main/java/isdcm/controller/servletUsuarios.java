@@ -134,7 +134,7 @@ public class servletUsuarios extends HttpServlet {
                     }
  
                 }else{
-                    response.sendRedirect("registroUsu.jsp");
+                    response.sendRedirect("error_ingreso_de_datos.jsp");
                 }
             } else {
                 response.sendRedirect("registroUsu.jsp");
