@@ -90,22 +90,18 @@ public class servletUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       int  p = 0;
         String nombre=request.getParameter("name");
         String apellido=request.getParameter("surname");
         String correo_electronico=request.getParameter("email");
         String nombre_usuario=request.getParameter("username");
         String contrasenha=request.getParameter("password");
         String contrasenha2=request.getParameter("password2");
-
         String accion=request.getParameter("action");
             if(accion.equals("register")){
                 usu_reg.setNombre_de_usuario(nombre_usuario);
 
                 r=dao_reg.validar_reg(usu_reg);
                 if(r==0){
-                    
-                    
                     if(contrasenha.equals(contrasenha2)){
 
                         usuario usu1 = new usuario();
@@ -114,7 +110,6 @@ public class servletUsuarios extends HttpServlet {
                         usu1.setCorreo_electronico(correo_electronico);
                         usu1.setNombre_de_usuario(nombre_usuario);
                         usu1.setContrasenha(contrasenha);
-
                         try {
                             dao.registerusu(usu1);
                         } catch (Exception e) {
@@ -122,49 +117,16 @@ public class servletUsuarios extends HttpServlet {
                             e.printStackTrace();
                         }    
                         response.sendRedirect("login.jsp");
-            
-
                     } else {
-                        p = 2;
-                       // response.sendRedirect("registroUsu.jsp");
-                        String parm = request.getParameter("p");
-                        request.setAttribute("parm", parm);
                         RequestDispatcher rd = request.getRequestDispatcher("registroUsu.jsp");
                         rd.forward(request, response);
                     }
- 
                 }else{
                     response.sendRedirect("error_ingreso_de_datos.jsp");
                 }
             } else {
                 response.sendRedirect("registroUsu.jsp");
-            }
-        
-/*        if(contrasenha.equals(contrasenha2)){
-            p = 1;
-            usuario usu1 = new usuario();
-            usu1.setNombre(nombre);
-            usu1.setApellido(apellido);
-            usu1.setCorreo_electronico(correo_electronico);
-            usu1.setNombre_de_usuario(nombre_usuario);
-            usu1.setContrasenha(contrasenha);
-
-            try {
-                dao.registerusu(usu1);
-            } catch (Exception e) {
-                //TODO: handle exception
-                e.printStackTrace();
-            }    
-            response.sendRedirect("login.jsp");
-
-        } else {
-            p = 2;
-            request.setAttribute("parm", p);
-            RequestDispatcher rd = request.getRequestDispatcher("registroUsu.jsp");
-            rd.forward(request, response);
-            //response.sendRedirect("registroUsu.jsp");
-        }
-*/        
+            }      
     }
 
     /**
