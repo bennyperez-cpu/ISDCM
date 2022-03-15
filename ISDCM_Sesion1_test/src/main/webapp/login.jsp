@@ -2,6 +2,10 @@
     Document   : login
     Created on : 21-feb-2022, 23:19:39 <div class="container "> <div class = "form-group text-center"> 
     Author     : Benny Hammer Pérez Vásquez
+        <style>
+
+        </style>
+        
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,11 +15,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Sube tus Videos</title>
-        <link href="css/Estilos_login.css" rel="stylesheet" type="text/css"/>
-        <link href="css/style_button.css" rel="stylesheet" media="all"/>
+        <link href="css/Estilos_login.css" rel="stylesheet"/>
+        <link href="css/style_button.css" rel="stylesheet" media="all"/> 
         <script src="https://kit.fontawesome.com/4e646a13f9.js" crossorigin="anonymous"></script>
+        
+        <style>
+            body{
+                margin: 0;
+                padding: 0;     
+                background-image: url("img/Fondo_video.jpg");
+                background-size: cover;
+                background-position: center;
+                font-family: sans-serif;    
+                background-color: #32baf3;
+            }
+            
+            .container{
+                background-color:silver;
+                border-radius: 10px;
+                padding:25px;
+                margin-top: 80px
+            }
+        </style>
+
+        
     </head>
-    <body>               
+    <body>             
+        
+        
+        
         <div class="container col-lg-3">
             <form action = "servletUsuarios" method ="get"> 
                 <div class = "form-group text-center">

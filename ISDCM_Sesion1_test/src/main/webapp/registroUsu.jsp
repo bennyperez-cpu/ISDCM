@@ -19,6 +19,22 @@
     </head>
     <body>
         
+                 <%
+                        //int parm = Integer.parseInt(request.getParameter("parm"));
+                        if (request.getAttribute("parm")!= null){
+                    %>    
+                        <div id ="popup" class="overlay">
+                            <div id='popupBody'>
+                                <h2>CUIDADO!</h2>
+                                <a id="cerrar" href="#">&times; </a>
+                                <div class="popupContent">
+                                    <p>La contraseña no coincide</p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }%>
+                   
+        
         <div class="container col-lg-3">
             
             <form action= "servletUsuarios" method ="post" >
@@ -43,21 +59,7 @@
                     <button name="action" value="register" type="submit" class="button" style="float: left "><i class="fa-solid fa-user-plus"></i> Registrar</button>
                     <button type="button" onclick="location.href='login.jsp'" class="button" style="float: right " ><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
                     <br>
-                    <%--<%
-                        //int parm = Integer.parseInt(request.getParameter("parm"));
-                        if (request.getAttribute("parm")!= null){
-                    %>    
-                        <div id ="popup" class="overlay">
-                            <div id='popupBody'>
-                                <h2>CUIDADO!</h2>
-                                <a id="cerrar" href="#">&times; </a>
-                                <div class="popupContent">
-                                    <p>La contraseña no coincide</p>
-                                </div>
-                            </div>
-                        </div>
-                    <% }%>
-                    --%>
+
                 </div>
                 <%--<c:out value="${parm}"/>
                 <c:when test="">--%>

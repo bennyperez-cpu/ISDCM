@@ -8,20 +8,23 @@ and open the template in the editor.
     Author     : Benny Hammer Pérez Vásquez
 */
 
+body{
+
+    margin: 0;
+    padding: 0;
+    background-image: url("img/Fondo_video.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;    
+    background-color: #32baf3;
+}
 .container{
     background-color:silver;
     border-radius: 10px;
     padding:25px;
     margin-top: 80px
 }
-.body{
-    margin: 0;
-    padding: 0;
-    background: url(Video_fondo.jpg);
-    background-size: cover;
-    background-position: center;
-    font-family: sans-serif;    
-}
+
 .title_header{
     font-size: 40px;
     text-align: center;

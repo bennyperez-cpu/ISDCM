@@ -158,9 +158,10 @@ public class servletRegistroVid extends HttpServlet {
 
             }else{
                 log("Video Repetido");
-                List<video> videos = videoDAO.getVideos("TITULO",titulo);
-                request.getSession().setAttribute("videos_list", videos);
-                response.sendRedirect("listadoVid.jsp");
+                //List<video> videos = videoDAO.getVideos("TITULO",titulo);
+                //request.getSession().setAttribute("videos_list", videos);
+                request.getSession().removeAttribute("videos_list");
+                response.sendRedirect("error_video_repetido.jsp");
             }
         } else {
             response.sendRedirect("listadoVid.jsp");

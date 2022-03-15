@@ -29,7 +29,7 @@ public class servletUsuarios extends HttpServlet {
     usuario usu=new usuario();
     usuario usu_reg = new usuario();    
     int r=0;
-    int p=0;
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,7 +54,8 @@ public class servletUsuarios extends HttpServlet {
                     request.getSession().setAttribute("userName",nombre);
                     request.getRequestDispatcher("listadoVid.jsp").forward(request, response);
                 }else{
-                    request.getRequestDispatcher("registroUsu.jsp").forward(request, response);
+        
+                    request.getRequestDispatcher("error_login.jsp").forward(request, response);
                 }
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -89,7 +90,7 @@ public class servletUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        p = 0;
+       int  p = 0;
         String nombre=request.getParameter("name");
         String apellido=request.getParameter("surname");
         String correo_electronico=request.getParameter("email");

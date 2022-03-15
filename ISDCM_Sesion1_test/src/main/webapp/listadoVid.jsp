@@ -25,25 +25,29 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         
+        <style>
+
+        </style>
+        
+        
     </head>
     <body>
         <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>${empty userName ? '' : userName}</h3>
-                    <h5>Email: ${empty userEmail ? '' : userEmail}</h5>
-                    <h5>Username: ${empty username ? '' : username}</h5>
+                   <%-- <h3>${empty userName ? '' : userName}</h3> --%>
+                    <h5>Usuario: ${empty userName ? '' : userName}</h5>
                 </div>
 
-                <ul class="list-unstyled components">
+                <ul class="list-unstyled components text-center">
 
                     <li>
-                        <a href="videoSearch.jsp">Buscar Videos</a>
+                        <a href="listadoVid.jsp" action = removeAttribute("videos_list")>Buscar Videos</a> 
                     </li>
                 </ul>
                 
-                <ul class="list-unstyled components">
+                <ul class="list-unstyled components  text-center">
 
                     <li>
                         <a href="registroVid.jsp">Subir Videos</a>
@@ -51,7 +55,7 @@
                 </ul>
                 
                 
-                <ul class='list-unstyled CTAs'>
+                <ul class='list-unstyled CTAs  text-center'>
                     <li>
                         <a href="servletUsuarios?accion=Salir">Salir</a>
                     </li> 

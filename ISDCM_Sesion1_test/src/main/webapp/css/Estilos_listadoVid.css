@@ -44,7 +44,7 @@ and open the template in the editor.
                 transition: all 0.3s;
             }
             #sidebar {
-                background: #1cbacc;
+                background: #ffbd7c;
                 color: #ffffff;
                 transition: all 0.3s;
                 min-width: 250px;
@@ -58,29 +58,29 @@ and open the template in the editor.
             }
             #sidebar ul.components {
                 padding: 20px 0;
-                border-bottom: 1px solid #1cbacc;
+                border-bottom: 5px solid #1cbacc;
             }
             #sidebar ul p {
                 color: #fff;
-                padding: 10px;
+                padding: 5px;
             }
             #sidebar ul li a {
-                padding: 10px;
+                padding: 5px;
                 font-size: 1.1em;
                 display: block;
             }
             #sidebar ul li a:hover {
-                color: #ffffff;
-                background: #fff;
+                color: #ffbd7c;
+                background: #1cbacc;
             }
             #sidebar ul li.active > a, a[aria-expanded="true"] {
-                color: #ffffff;
-                background: #1cbacc;
+                color: #ffbd7c;
+                background: c;
             }
             ul ul a {
                 font-size: 0.9em !important;
                 padding-left: 30px !important;
-                color: #ffffff;
+                color: #999;
                 background: #1cbacc;
             }
             .list_title_header{

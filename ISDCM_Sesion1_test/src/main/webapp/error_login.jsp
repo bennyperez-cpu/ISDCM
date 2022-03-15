@@ -14,9 +14,7 @@
     <body>
         <h1>Error: Usuario o Contraseña Incorrectos... Vuelva a Intentarlo o Registrese...</h1>
         <div class="p-t-15">
-            <button class="btn btn--radius-2 btn--blue m-b-15" onclick="location.href = './login.jsp'">Ir a inicio de sesión</button>
-                    
-                            
+            <button class="btn btn--radius-2 btn--blue m-b-15" onclick="location.href = './login.jsp'">Ir a inicio de sesión</button>          
         </div>
     </body>
 </html>
