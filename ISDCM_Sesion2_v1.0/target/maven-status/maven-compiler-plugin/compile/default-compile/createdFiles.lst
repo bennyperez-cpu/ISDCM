@@ -1,0 +1,12 @@
+isdcm/model/video.class
+isdcm/model/usuario.class
+isdcm/isdcm_sesion1/resources/JavaEE8Resource.class
+isdcm/isdcm_sesion1/JAXRSConfiguration.class
+isdcm/tools/videoDAO.class
+isdcm/tools/Unsuported.class
+isdcm/controller/servletBusqVid.class
+isdcm/tools/Conexion_DB.class
+isdcm/controller/servletUsuarios.class
+isdcm/tools/usuarioDAO.class
+isdcm/tools/Validar.class
+isdcm/controller/servletRegistroVid.class
