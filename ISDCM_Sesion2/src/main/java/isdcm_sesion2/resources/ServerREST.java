@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import tools.videoDAO;
+
 /**
  *
  * @author 
@@ -25,11 +27,10 @@ public class ServerREST {
     @Path("getInfo")
     @GET    
     @Produces("text/html")
-    public String getInfo (@QueryParam("info") String info, 
-                            @QueryParam("fecha") String fecha) {
-        
-        return "<html><head></head> <body> Informaci&oacute;n recibida " + info + " en fecha " + fecha + " </body></html>";
-    }
+    public String getReproducciones(@QueryParam("info") String enlace) {
+        int visualizations = videoDAO.getReproducciones(enlace);
+        return Integer.toString(visualizations);
+    
 
     /**
      * Sample of POST method
@@ -42,10 +43,10 @@ public class ServerREST {
     @POST    
     @Consumes("application/x-www-form-urlencoded")
     @Produces("text/html")
-    public String postInfo (  @FormParam("info") String info, 
-                              @FormParam("fecha") String fecha) 
+    public String increReproducciones(  @FormParam("info") String enlace) 
     {                
-        return "<html><head></head> <body> Informaci&oacute;n recibida " + info + " en fecha " + fecha + " </body></html>";
+        boolean success = videoDAO.incrementReproducciones(enlace);
+        return Boolean.toString(success);
     }    
     
 }
