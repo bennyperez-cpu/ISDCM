@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package isdcm_sesion2.resources;
+package isdcm.isdcm_sesion1.resources;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
