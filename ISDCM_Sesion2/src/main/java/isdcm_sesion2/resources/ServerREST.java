@@ -31,6 +31,7 @@ public class ServerREST {
         int visualizations = videoDAO.getReproducciones(enlace);
         return Integer.toString(visualizations);
     
+    }
 
     /**
      * Sample of POST method
