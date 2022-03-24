@@ -144,6 +144,7 @@
                                     <th scope="col">Reproducciones</th>
                                     <th scope="col">Formato</th>
                                     <th scope="col">Fecha de Creación</th>
+                                    <th scope="col">Enlace</th>
                                     
                                 </tr>
                             </thead>
@@ -157,6 +158,7 @@
                                         <td>${video.getReproducciones()}</td>
                                         <td>${video.getFormato()}</td>
                                         <td>${video.getFecha_creacion()}</td>
+                                        <td>${video.getEnlace()}</td>
     
                                     </tr> 
                                 </c:forEach>
