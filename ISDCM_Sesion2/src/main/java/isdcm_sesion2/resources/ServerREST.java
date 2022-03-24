@@ -27,7 +27,7 @@ public class ServerREST {
     @Path("getInfo")
     @GET    
     @Produces("text/html")
-    public String getReproducciones(@QueryParam("info") String enlace) {
+    public String getReproducciones(@QueryParam("enlace") String enlace) {
         int visualizations = videoDAO.getReproducciones(enlace);
         return Integer.toString(visualizations);
     
@@ -43,7 +43,7 @@ public class ServerREST {
     @POST    
     @Consumes("application/x-www-form-urlencoded")
     @Produces("text/html")
-    public String increReproducciones(  @FormParam("info") String enlace) 
+    public String increReproducciones(  @FormParam("enlace") String enlace) 
     {                
         boolean success = videoDAO.incrementReproducciones(enlace);
         return Boolean.toString(success);
