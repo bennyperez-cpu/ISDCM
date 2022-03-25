@@ -19,7 +19,7 @@ public class videoDAO {
     public int registrovid(video video_nuevo) throws ClassNotFoundException {
         
 
-        String sql="INSERT INTO VIDEOS" + "  (TITULO, AUTOR, FECHA_DE_CREACION, DURACION, NUMERO_DE_REPRODUCCIONES, DESCRIPCION, FORMATO) VALUES" +" (?, ?, ?, ?, ?, ?, ?)";
+        String sql="INSERT INTO VIDEOS" + "  (TITULO, AUTOR, FECHA_DE_CREACION, DURACION, NUMERO_DE_REPRODUCCIONES, DESCRIPCION, FORMATO, ENLACE) VALUES" +" (?, ?, ?, ?, ?, ?, ?, ?)";
         int result = 0;
 
         try {
@@ -32,6 +32,7 @@ public class videoDAO {
             ps.setInt(5, 0);
             ps.setString(6, video_nuevo.getDescripcion());
             ps.setString(7, video_nuevo.getFormato());
+            ps.setString(8, video_nuevo.getEnlace());
             //rs=ps.executeQuery();
             System.out.println(ps);
             result = ps.executeUpdate();

@@ -100,6 +100,7 @@ public class servletRegistroVid extends HttpServlet {
         Time duracion = Time.valueOf(tiempo);
         String descripcion = request.getParameter("descripcion");
         String formato = request.getParameter("formato");
+        String enlace = request.getParameter("enlace");
         
         String accion=request.getParameter("action");
         if(accion.equals("add-video")){
@@ -112,13 +113,14 @@ public class servletRegistroVid extends HttpServlet {
                 video1.setDuracion(duracion);
                 video1.setDescripcion(descripcion);
                 video1.setFormato(formato);
+                video1.setEnlace(enlace);
                 try {
                     videoDAO.registrovid(video1);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(servletRegistroVid.class.getName()).log(Level.SEVERE, null, ex);
                 }                 
-                List<video> videos = videoDAO.getVideos("TITULO",titulo);
-                request.getSession().setAttribute("videos_list", videos);
+                //List<video> videos = videoDAO.getVideos("TITULO",titulo);
+                //request.getSession().setAttribute("videos_list", videos);
                 response.sendRedirect("listadoVid.jsp");
             }else{
                 log("Video Repetido");

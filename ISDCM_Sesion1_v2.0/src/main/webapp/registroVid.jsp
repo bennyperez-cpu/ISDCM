@@ -46,6 +46,8 @@
                     <input name="descripcion" type="text" class="form-control" id="description" required placeholder="Avengers Era de Ultrón, El increible Hulk... ">
                     <label for="formato" style="float: left">Formato</label>
                     <input name="formato" type="text" class="form-control" required id="duration" placeholder="MOV" pattern=".{0,5}" title="No más de 5 caractéres">
+                    <label for="enlace" style="float: left">Enlace</label>
+                    <input name="enlace" type="text" class="form-control" required id="duration" placeholder="/ruta" pattern=".{0,20}" title="No más de 20 caractéres">
 
                 </div>
                 <div>
