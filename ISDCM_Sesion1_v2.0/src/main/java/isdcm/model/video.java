@@ -20,14 +20,15 @@ public class video {
     private Integer reproducciones;
     private String descripcion;
     private String formato;
+    private String enlace;
 
     
     public video() {
     }
 
 
-    public video(String titulo, String autor, Date fecha_creacion, Time duracion,
-            Integer reproducciones, String descripcion, String formato) {
+    public video(String titulo, String autor, Date fecha_creacion, Time duracion, Integer reproducciones,
+            String descripcion, String formato, String enlace) {
         this.titulo = titulo;
         this.autor = autor;
         this.fecha_creacion = fecha_creacion;
@@ -35,6 +36,7 @@ public class video {
         this.reproducciones = reproducciones;
         this.descripcion = descripcion;
         this.formato = formato;
+        this.enlace = enlace;
     }
 
 
@@ -83,10 +85,9 @@ public class video {
     }
 
 
-  public void setReproducciones(Integer reproducciones) {
+    public void setReproducciones(Integer reproducciones) {
         this.reproducciones = reproducciones;
     }
-
 
 
     public String getDescripcion() {
@@ -107,5 +108,18 @@ public class video {
     public void setFormato(String formato) {
         this.formato = formato;
     }
+
+
+    public String getEnlace() {
+        return enlace;
+    }
+
+
+    public void setEnlace(String enlace) {
+        this.enlace = enlace;
+    }
+
+
+ 
 
 }

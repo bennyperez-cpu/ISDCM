@@ -5,6 +5,7 @@
  */
 package isdcm.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import isdcm.model.dataJson;
 import isdcm.model.video;
 import isdcm.tools.videoDAO;
 
@@ -98,7 +102,34 @@ public class servletBusqVid extends HttpServlet {
         
     public void search(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
         log("Buscando por" + parametro);              
-        List<video> videos = videoDAO.getVideos(parametro,value);
+        //List<video> videos = videoDAO.getVideos(parametro,value);
+
+        Gson gson = new Gson();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setStatus(200);
+
+        dataJson datajson = new dataJson(parametro,value);
+
+        PrintWriter pw = response.getWriter();
+        pw.print(gson.toJson(datajson));
+        pw.flush();
+
+
+        StringBuffer sb = new StringBuffer();
+        BufferedReader br = request.getReader();
+
+        String atributos = null;
+
+
+        while((atributos = br.readLine()) != null){
+            sb.append(atributos);
+        
+        }
+
+        video[] videos = gson.fromJson(sb.toString(), video[].class);
+
         request.getSession().setAttribute("videos_list", videos);
         response.sendRedirect("listadoVid.jsp");
 
