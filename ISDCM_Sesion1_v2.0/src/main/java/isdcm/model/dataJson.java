@@ -1,6 +1,9 @@
 package isdcm.model;
 
-public class dataJson {
+import java.io.Serializable;
+
+public class dataJson implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String parameter;
     private String value;
 

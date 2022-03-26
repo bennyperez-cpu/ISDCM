@@ -31,7 +31,8 @@ import tools.videoDAO;
 public class ServletServer extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    String parametro, value;
+    
+    
 
     Gson gson = new Gson();
 
@@ -46,24 +47,24 @@ public class ServletServer extends HttpServlet {
      */
     protected void processRequest_1(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String parametro, value;
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
         response.setStatus(200);
-
-        StringBuffer sb = new StringBuffer();
+/*
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = request.getReader();
 
         String atributos = null;
-
 
         while((atributos = br.readLine()) != null){
             sb.append(atributos);
         }
 
         dataJson datajson = gson.fromJson(sb.toString(), dataJson.class);
-        List<video> videos = videoDAO.getVideos(datajson.getParameter(),datajson.getValue());
+        List<video> videos = videoDAO.getVideos(datajson.getParameter(),datajson.getValue());*/
+        List<video> videos = videoDAO.getVideos("TITULO","La casa de Papel");
 
         PrintWriter pw = response.getWriter();
         pw.print(gson.toJson(videos));
@@ -72,10 +73,7 @@ public class ServletServer extends HttpServlet {
 
     protected void processRequest_2(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<video> videos = videoDAO.getVideos(parametro,value);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        request.setCharacterEncoding("utf-8");
+
 
 
     }
@@ -92,7 +90,42 @@ public class ServletServer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest_1(request, response);
+    //    processRequest_1(request, response);
+    
+    /*    
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        response.setStatus(200);
+    
+        
+        dataJson data = new dataJson("Hola","Mundo");
+        
+        PrintWriter pw = response.getWriter();
+        pw.print(gson.toJson(data));
+        pw.flush();
+    */
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setStatus(200);
+        
+        String atributos = null;
+        StringBuilder sb = new StringBuilder();
+
+        BufferedReader br = request.getReader();
+
+        while((atributos = br.readLine()) != null){
+            sb.append(atributos);
+        }
+
+        dataJson datajson = gson.fromJson(sb.toString(), dataJson.class);
+        List<video> videos = videoDAO.getVideos(datajson.getParameter(),datajson.getValue());
+        //List<video> videos = videoDAO.getVideos("TITULO","La casa de Papel");
+
+        PrintWriter pw = response.getWriter();
+        pw.print(gson.toJson(videos));
+        pw.flush();
+        
     }
 
     /**
@@ -106,7 +139,34 @@ public class ServletServer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest_2(request, response);
+                response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setStatus(201);
+        
+        String atributos = null;
+        StringBuffer sb = new StringBuffer();
+
+        BufferedReader br = request.getReader();
+
+        while((atributos = br.readLine()) != null){
+            sb.append(atributos);
+        }
+
+        dataJson datajson = gson.fromJson(sb.toString(), dataJson.class);
+        log("Buscando por " + datajson.getValue()); 
+        List<video> videos = videoDAO.getVideos(datajson.getParameter(),datajson.getValue());
+        //List<video> videos = videoDAO.getVideos("TITULO","La casa de Papel");
+
+        PrintWriter pw = response.getWriter();
+        pw.print(gson.toJson(videos));
+       //pw.print(gson.toJson(videoDAO.getVideos("TITULO","La casa de Papel")));
+        pw.flush();
+        
+        
+
+
+
 
     }
 

@@ -29,7 +29,7 @@
             .fondo{
                 margin: 0;
                 padding: 0;     
-                background-image: url("img/video_list.jpg");
+                background-image: url("");
                 background-size: auto;
                 background-position: center;
                 font-family: sans-serif;    
@@ -158,7 +158,19 @@
                                         <td>${video.getReproducciones()}</td>
                                         <td>${video.getFormato()}</td>
                                         <td>${video.getFecha_creacion()}</td>
-                                        <td>${video.getEnlace()}</td>
+                                        <td>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            ${video.getEnlace()}
+                                        
+                                        
+                                        </td>
     
                                     </tr> 
                                 </c:forEach>

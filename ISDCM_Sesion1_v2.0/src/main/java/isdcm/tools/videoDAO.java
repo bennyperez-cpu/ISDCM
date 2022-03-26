@@ -97,7 +97,7 @@ public int validar_vid(video vid){
                 video video1 = new video();
                 video1.setTitulo(rs.getString("TITULO"));
                 video1.setAutor(rs.getString("AUTOR"));
-                video1.setFecha_creacion(rs.getDate("FECHA_DE_CREACION"));
+                video1.setFecha_creacion(rs.getString("FECHA_DE_CREACION"));
                 video1.setDuracion(rs.getTime("DURACION"));
                 video1.setReproducciones(rs.getInt("NUMERO_DE_REPRODUCCIONES"));
                 video1.setDescripcion(rs.getString("DESCRIPCION"));

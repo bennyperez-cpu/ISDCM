@@ -43,6 +43,10 @@ public class video implements Serializable{
         this.enlace = enlace;
     }
 
+    public video(String string, String string0, int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
     public String getTitulo() {

@@ -5,6 +5,7 @@
  */
 package isdcm.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
@@ -12,22 +13,22 @@ import java.util.Date;
  *
  * @author Benny Hammer Pérez Vásquez
  */
-public class video {
+public class video implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private String autor;
-    private Date fecha_creacion;
+    private String fecha_creacion;
     private Time duracion;
     private Integer reproducciones;
     private String descripcion;
     private String formato;
     private String enlace;
-
-    
+        
     public video() {
     }
 
 
-    public video(String titulo, String autor, Date fecha_creacion, Time duracion, Integer reproducciones,
+    public video(String titulo, String autor, String fecha_creacion, Time duracion, Integer reproducciones,
             String descripcion, String formato, String enlace) {
         this.titulo = titulo;
         this.autor = autor;
@@ -60,12 +61,12 @@ public class video {
     }
 
 
-    public Date getFecha_creacion() {
+    public String getFecha_creacion() {
         return fecha_creacion;
     }
 
 
-    public void setFecha_creacion(Date fecha_creacion) {
+    public void setFecha_creacion(String fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
