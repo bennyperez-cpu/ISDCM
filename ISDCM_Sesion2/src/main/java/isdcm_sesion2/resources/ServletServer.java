@@ -29,12 +29,11 @@ import tools.videoDAO;
  */
 @WebServlet(name = "ServletServer", urlPatterns = "/videos")
 public class ServletServer extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     String parametro, value;
 
     Gson gson = new Gson();
-
-    
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -61,12 +60,10 @@ public class ServletServer extends HttpServlet {
 
         while((atributos = br.readLine()) != null){
             sb.append(atributos);
-        
         }
 
         dataJson datajson = gson.fromJson(sb.toString(), dataJson.class);
         List<video> videos = videoDAO.getVideos(datajson.getParameter(),datajson.getValue());
-
 
         PrintWriter pw = response.getWriter();
         pw.print(gson.toJson(videos));
@@ -80,7 +77,6 @@ public class ServletServer extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
 
-        
 
     }
 

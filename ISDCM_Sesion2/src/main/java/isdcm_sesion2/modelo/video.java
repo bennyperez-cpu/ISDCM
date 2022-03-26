@@ -5,6 +5,7 @@
  */
 package isdcm_sesion2.modelo;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -12,7 +13,8 @@ import java.sql.Time;
  *
  * @author alumne
  */
-public class video {
+public class video implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private String autor;
     private Date fecha_creacion;
