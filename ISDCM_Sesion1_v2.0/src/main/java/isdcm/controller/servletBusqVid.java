@@ -108,6 +108,12 @@ public class servletBusqVid extends HttpServlet {
                         request.getSession().removeAttribute("videos_list");
                         response.sendRedirect("listadoVid.jsp");
                         break;
+
+                    case "play-video":
+                        log("play-video");
+                        request.getSession().removeAttribute("play-video");
+                        response.sendRedirect("reproduccion.jsp");
+                        break;
                     
                     default:
                         break;

@@ -159,17 +159,20 @@
                                         <td>${video.getFormato()}</td>
                                         <td>${video.getFecha_creacion()}</td>
                                         <td>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            ${video.getEnlace()}
-                                        
-                                        
+                                            <c:choose>
+                                                <c:when test="${video.getEnlace()!='N/A'}">
+                                                    <form action="${pageContext.request.contextPath}/servletBusqVid" method="post">
+                                                        <button name="action" value="play-video" data-toggle="tooltip" title="${video.getEnlace()}" type="submit" class="btn btn-primary btn-sm m-2">Play video</button>
+                                                        <input type="hidden" name="videoEnlace" value="${video.getEnlace()}" />
+                                                        <input type="hidden" name="videoFormato" value="${video.getFormato()}" />
+                                                        <input type="hidden" name="videoTitulo" value="${video.getTitulo()}" />
+                                                        <input type="hidden" name="location" value="remote" />
+                                                    </form>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <button class="btn btn-secondary btn-sm m-2" disabled>Ruta no Definida</button>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </td>
     
                                     </tr> 
