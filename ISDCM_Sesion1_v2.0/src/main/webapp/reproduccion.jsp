@@ -37,9 +37,9 @@
     <body>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4 title">Playing: ${videoTitle}</h1>
+                <h1 class="display-4 title">Playing: ${videoTitulo}</h1>
                 <hr class="my-4">
-                <% if (session.getAttribute("videoPath") == null) { %>
+                <% if (session.getAttribute("videoEnlace") == null) { %>
                 <label style="color: white;">There was an error loading the video. Please check its path and contact the moderators.</h4>
                 <% }else{ %>
                 <video
@@ -52,7 +52,7 @@
                     poster="MY_VIDEO_POSTER.jpg"
                     data-setup="{}"
                     >
-                    <source src='${videoPath}' type='video/${videoFormat}'>
+                    <source src='${videoEnlace}' type='video/${videoFormato}'>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that
@@ -62,7 +62,7 @@
                 <%} %>
                 
                 <p class="lead">
-                    <a class="btn btn-link btn-lg back" href="logged.jsp" role="button">Back to list</a>
+                    <a class="btn btn-link btn-lg back" href="listadoVid.jsp" role="button">Vuelve a la Lista</a>
                 </p>
             </div>
         </div>
