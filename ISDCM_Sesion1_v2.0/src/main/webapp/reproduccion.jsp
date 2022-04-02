@@ -39,6 +39,7 @@
             <div class="container">
                 <h1 class="display-4 title">Playing: ${videoTitulo}</h1>
                 <hr class="my-4">
+
                 <% if (session.getAttribute("videoEnlace") == null) { %>
                 <label style="color: white;">There was an error loading the video. Please check its path and contact the moderators.</h4>
                 <% }else{ %>
@@ -53,6 +54,11 @@
                     data-setup="{}"
                     >
                     <source src='${videoEnlace}' type='video/${videoFormato}'>
+                    <div id="player" class="js-player"></div>
+                    <div class="video-info">
+                        <p class="video-label">Reproducciones: </p> <p id="views"></p>
+                        <p class="video-label">Duracion:       </p> <p id="time" ></p>
+                    </div>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that

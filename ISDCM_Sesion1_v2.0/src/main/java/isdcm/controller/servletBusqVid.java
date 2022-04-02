@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import isdcm.model.dataJson;
 import isdcm.model.video;
 import isdcm.tools.videoDAO;
+import isdcm.isdcm_sesion1.resources.*;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.lang.ProcessBuilder.Redirect.Type;
@@ -113,6 +114,8 @@ public class servletBusqVid extends HttpServlet {
                         log("play-video");
                         request.getSession().removeAttribute("play-video");
                         response.sendRedirect("reproduccion.jsp");
+                        value = request.getParameter("enlace");
+                        show_visualization(request,response,value);
                         break;
                     
                     default:
@@ -188,7 +191,17 @@ public class servletBusqVid extends HttpServlet {
     }
         
             
-    
+    public void show_visualization(HttpServletRequest request, HttpServletResponse response, String enlace) throws IOException {
+        log("Accediendo " + enlace);
+
+        ISDCM_Client restClient = new ISDCM_Client();
+        String result =  restClient.increReproducciones(enlace);
+
+        restClient.getReproducciones(enlace);
+
+        restClient.close();
+
+    }
 
     /**
      * Returns a short description of the servlet.

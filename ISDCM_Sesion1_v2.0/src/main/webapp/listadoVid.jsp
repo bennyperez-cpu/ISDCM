@@ -166,7 +166,7 @@
                                                         <input type="hidden" name="videoEnlace" value="${video.getEnlace()}" />
                                                         <input type="hidden" name="videoFormato" value="${video.getFormato()}" />
                                                         <input type="hidden" name="videoTitulo" value="${video.getTitulo()}" />
-                                                        <input type="hidden" name="location" value="remote" />
+                                                        <input type="hidden" name="reproducciones" value="${video.getReproducciones()}" />
                                                     </form>
                                                 </c:when>
                                                 <c:otherwise>

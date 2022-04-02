@@ -27,12 +27,13 @@ public class ISDCM_Client {
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/ISDCM_Sesion2/resources";
 
+    
     public ISDCM_Client() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("javaee8");
     }
 
-    public String increReproducciones() throws ClientErrorException {
+    public String increReproducciones(String enlace) throws ClientErrorException {
         return webTarget.path("postInfo").request(javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED).post(null, String.class);
     }
 

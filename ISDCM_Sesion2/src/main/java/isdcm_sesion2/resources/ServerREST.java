@@ -24,6 +24,10 @@ public class ServerREST {
      * @param fecha
      * @return 
      */
+
+    public ServerREST() {
+    }
+     
     @Path("getInfo")
     @GET    
     @Produces("text/html")
