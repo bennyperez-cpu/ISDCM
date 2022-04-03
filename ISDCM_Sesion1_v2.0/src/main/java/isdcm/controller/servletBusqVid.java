@@ -111,10 +111,9 @@ public class servletBusqVid extends HttpServlet {
                         break;
 
                     case "play-video":
-                        log("play-video");
-                        request.getSession().removeAttribute("play-video");
-                        response.sendRedirect("reproduccion.jsp");
-                        value = request.getParameter("enlace");
+                        log("play-video");                 
+                        value = request.getParameter("videoEnlace");
+                        log("Buscando por " + value);
                         show_visualization(request,response,value);
                         break;
                     
@@ -195,11 +194,15 @@ public class servletBusqVid extends HttpServlet {
         log("Accediendo " + enlace);
 
         ISDCM_Client restClient = new ISDCM_Client();
-        String result =  restClient.increReproducciones(enlace);
+        String result_1 =  restClient.increReproducciones(enlace);
 
-        restClient.getReproducciones(enlace);
+        String result_2 = restClient.getReproducciones(enlace);
+        
+        log("El resultato 1 y 2" + result_1 +" " + result_2);
 
         restClient.close();
+        request.getSession().removeAttribute("play-video");
+        response.sendRedirect("reproduccion.jsp");
 
     }
 

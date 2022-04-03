@@ -63,12 +63,12 @@ public class videoDAO {
     public static int getReproducciones(String enlace) {
         try {
             con = cn.getConnection();
-            ps = con.prepareStatement("SELECT REPRODUCCIONES FROM VIDEOS WHERE ENLACE = ?");
+            ps = con.prepareStatement("SELECT NUMERO_DE_REPRODUCCIONES FROM VIDEOS WHERE ENLACE = ?");
             ps.setString(1,enlace);
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("REPRODUCCIONES"); //Validar
+                return rs.getInt("NUMERO_DE_REPRODUCCIONES"); //Validar
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,7 +79,7 @@ public class videoDAO {
     public static boolean incrementReproducciones(String enlace) {
         try {
             con = cn.getConnection();
-            ps = con.prepareStatement("UPDATE VIDEOS SET REPRODUCCIONES = REPRODUCCIONES + 1 WHERE ENLACE = ?");
+            ps = con.prepareStatement("UPDATE VIDEOS SET NUMERO_DE_REPRODUCCIONES = NUMERO_DE_REPRODUCCIONES + 1 WHERE ENLACE = ?");
             ps.setString(1,enlace);
             int col = ps.executeUpdate();
 

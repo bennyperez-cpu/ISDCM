@@ -7,7 +7,6 @@ package isdcm.isdcm_sesion1.resources;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 
@@ -15,7 +14,7 @@ import javax.ws.rs.core.Form;
  * Jersey REST client generated for REST resource:ServerREST [javaee8]<br>
  * USAGE:
  * <pre>
- *        ISDCM_Client client = new ISDCM_Client();
+ *        NewJerseyClient client = new NewJerseyClient();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -23,30 +22,25 @@ import javax.ws.rs.core.Form;
  *
  * @author alumne
  */
-public class ISDCM_Client {
+public class NewJerseyClient {
 
-    private WebTarget webTarget;
-    private Client client;
+    private final WebTarget webTarget;
+    private final Client client;
     private static final String BASE_URI = "http://localhost:8080/ISDCM_Sesion2/resources";
 
-    
-    public ISDCM_Client() {
+    public NewJerseyClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("javaee8");
     }
 
     public String increReproducciones(String enlace) throws ClientErrorException {
-        Form form = new Form().param("enlace", enlace);        
-        return webTarget.path("postInfo").request(javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED)
-                .accept(javax.ws.rs.core.MediaType.TEXT_HTML).post(Entity.form(form), String.class);
-               
+        Form form = new Form().param("enlace", enlace);
+        return webTarget.path("postInfo").request(javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED).post(null, String.class);
+        
     }
 
-    public String getReproducciones(String enlace) throws ClientErrorException {
+    public String getReproducciones() throws ClientErrorException {
         WebTarget resource = webTarget;
-        if (enlace != null) {
-            resource = resource.queryParam("enlace", enlace);
-        }
         resource = resource.path("getInfo");
         return resource.request(javax.ws.rs.core.MediaType.TEXT_HTML).get(String.class);
     }
