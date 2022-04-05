@@ -145,10 +145,8 @@ public class servletBusqVid extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
-        response.setStatus(200);
-        
+        response.setStatus(200);       
         String       postUrl       = "http://localhost:8080/ISDCM_Sesion2/ServletServer";// put in your url
-
         HttpClient   httpClient    = HttpClientBuilder.create().build();
         HttpPost     post          = new HttpPost(postUrl);
         StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
@@ -173,9 +171,6 @@ public class servletBusqVid extends HttpServlet {
             }
             log("Buscando " +  (sb.toString()));
 
-            Gson gson_1 = new Gson();
-
-     //   video[] videos = gson_1.fromJson(new JsonReader(new FileReader(sb.toString())), video[].class);
             java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
             List<video> list = new Gson().fromJson(sb.toString(), listType);
         
@@ -185,27 +180,10 @@ public class servletBusqVid extends HttpServlet {
             request.getSession().setAttribute("videos_list", list);
             
         }
-
-        /*PrintWriter pw = response.getWriter();
-        pw.print(gson.toJson(response_2));
-        pw.flush();*/
-
-/*
-        StringBuffer sb = new StringBuffer();
-        BufferedReader br = request.getReader();
-
-        String atributos = null;
-
-
-        while((atributos = br.readLine()) != null){
-            sb.append(atributos);
-        
-        }*/
     }
     
         public void search_2(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
         log("Buscando por" + parametro);              
-        //List<video> videos = videoDAO.getVideos(parametro,value);
 
         Gson gson = new Gson();
         dataJson datajson = new dataJson(parametro,value);
@@ -216,7 +194,6 @@ public class servletBusqVid extends HttpServlet {
         response.setStatus(200);
         
         String       postUrl       = "http://localhost:8080/ISDCM_Sesion2/ServletServer";// put in your url
-
         HttpClient   httpClient    = HttpClientBuilder.create().build();
         HttpPost     post          = new HttpPost(postUrl);
         StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
@@ -243,14 +220,10 @@ public class servletBusqVid extends HttpServlet {
 
             Gson gson_1 = new Gson();
 
-     //   video[] videos = gson_1.fromJson(new JsonReader(new FileReader(sb.toString())), video[].class);
             java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
             List<video> list = new Gson().fromJson(sb.toString(), listType);
-            
             System.out.println(gson.toJson(list));
-                      
-          
-            String temp = list.get(0).getTitulo();
+
             request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
             request.getSession().setAttribute("videoDuracion", list.get(0).getDuracion());
             request.getSession().setAttribute("videoEnlace", list.get(0).getEnlace());
@@ -258,21 +231,7 @@ public class servletBusqVid extends HttpServlet {
             request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
         }
 
-        /*PrintWriter pw = response.getWriter();
-        pw.print(gson.toJson(response_2));
-        pw.flush();*/
-
-/*
-        StringBuffer sb = new StringBuffer();
-        BufferedReader br = request.getReader();
-
-        String atributos = null;
-
-
-        while((atributos = br.readLine()) != null){
-            sb.append(atributos);
-        
-        }*/
+ 
     }
         
      /*       
