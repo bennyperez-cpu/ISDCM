@@ -5,6 +5,7 @@
  */
 package tools;
 
+import static com.sun.activation.registries.LogSupport.log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +35,41 @@ public class videoDAO {
         try {
                       
             con = cn.getConnection();
-            ps = con.prepareStatement("Select * from videos where " + parametro + " =?");
+            ps = con.prepareStatement("Select * from videos where " + parametro + " = ?");
+            ps.setString(1,value);
+            log("Busqueda " + parametro);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                video video1 = new video();
+                video1.setTitulo(rs.getString("TITULO"));
+                video1.setAutor(rs.getString("AUTOR"));
+                video1.setFecha_creacion(rs.getDate("FECHA_DE_CREACION"));
+                video1.setDuracion(rs.getTime("DURACION"));
+                video1.setReproducciones(rs.getInt("NUMERO_DE_REPRODUCCIONES"));
+                video1.setDescripcion(rs.getString("DESCRIPCION"));
+                video1.setFormato(rs.getString("FORMATO"));
+                video1.setEnlace(rs.getString("ENLACE"));
+                videos.add(video1);
+
+            }
+
+            
+            
+        } catch (SQLException e) {
+
+            printSQLException(e);
+        }
+        return videos;
+    }
+    
+    public static List<video> getVideo(String value) {
+
+
+        ArrayList<video> videos = new ArrayList<video>();
+        try {
+                      
+            con = cn.getConnection();
+            ps = con.prepareStatement("SELECT * FROM VIDEOS WHERE ENLACE = ?");
             ps.setString(1,value);
             rs = ps.executeQuery();
             while (rs.next()) {

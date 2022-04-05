@@ -8,7 +8,6 @@ package isdcm.isdcm_sesion1.resources;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Form;
 
 /**
  * Jersey REST client generated for REST resource:ServerREST [javaee8]<br>
@@ -24,8 +23,8 @@ import javax.ws.rs.core.Form;
  */
 public class NewJerseyClient {
 
-    private final WebTarget webTarget;
-    private final Client client;
+    private WebTarget webTarget;
+    private Client client;
     private static final String BASE_URI = "http://localhost:8080/ISDCM_Sesion2/resources";
 
     public NewJerseyClient() {
@@ -33,14 +32,24 @@ public class NewJerseyClient {
         webTarget = client.target(BASE_URI).path("javaee8");
     }
 
-    public String increReproducciones(String enlace) throws ClientErrorException {
-        Form form = new Form().param("enlace", enlace);
-        return webTarget.path("postInfo").request(javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED).post(null, String.class);
-        
+    public <T> T lista_video(Class<T> responseType, String enlace) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        if (enlace != null) {
+            resource = resource.queryParam("enlace", enlace);
+        }
+        resource = resource.path("getVideos");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public String getReproducciones() throws ClientErrorException {
+    public String increReproducciones() throws ClientErrorException {
+        return webTarget.path("postInfo").request(javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED).post(null, String.class);
+    }
+
+    public String getReproducciones(String enlace) throws ClientErrorException {
         WebTarget resource = webTarget;
+        if (enlace != null) {
+            resource = resource.queryParam("enlace", enlace);
+        }
         resource = resource.path("getInfo");
         return resource.request(javax.ws.rs.core.MediaType.TEXT_HTML).get(String.class);
     }

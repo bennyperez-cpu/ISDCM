@@ -1,5 +1,8 @@
 package isdcm_sesion2.resources;
 
+import isdcm_sesion2.modelo.video;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -31,12 +34,44 @@ public class ServerREST {
     @Path("getInfo")
     @GET    
     @Produces("text/html")
+    @Consumes("application/x-www-form-urlencoded")
     public String getReproducciones(@QueryParam("enlace") String enlace) {
         int visualizations = videoDAO.getReproducciones(enlace);
         return Integer.toString(visualizations);
         //@QueryParam("enlace") String enlace
     
     }
+    
+    
+    static List<video> videos = new ArrayList<>();
+    @Path("getVideos")
+    @GET    
+    @Produces("application/json")
+    //@Consumes("application/x-www-form-urlencoded")
+    public List<video> lista_video(@QueryParam("enlace") String enlace) {
+        String parameter = "ENLACE";
+        videos = videoDAO.getVideos(parameter,enlace);
+        return videos;
+        //@QueryParam("enlace") String enlace
+    
+    }
+    
+    /*
+        static List<video> videos = new ArrayList<>();
+    @Path("getVideos")
+    @GET    
+    @Produces("application/json")
+    //@Consumes("application/x-www-form-urlencoded")
+    public List<video> lista_video(@QueryParam("enlace") String enlace) {
+        String parameter = "ENLACE";
+        videos = videoDAO.getVideos(parameter,enlace);
+        return videos;
+        //@QueryParam("enlace") String enlace
+    
+    }
+    
+    
+    */
 
     /**
      * Sample of POST method

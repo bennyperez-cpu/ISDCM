@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
@@ -34,6 +35,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  *
@@ -93,16 +101,19 @@ public class servletBusqVid extends HttpServlet {
                         parametro = "AUTOR";
                         value = request.getParameter("author");
                         search(request,response,parametro,value);
+                        response.sendRedirect("listadoVid.jsp");
                         break;
                     case "search-titulo":
                         parametro = "TITULO";
                         value = request.getParameter("title");
                         search(request,response,parametro,value);
+                        response.sendRedirect("listadoVid.jsp");
                         break;
                     case "search-fecha":
                         parametro = "FECHA_DE_CREACION";
                         value = request.getParameter("date");
                         search(request,response,parametro,value);
+                        response.sendRedirect("listadoVid.jsp");
                         break;
                     case "change-search":
                         log("change-search");
@@ -113,8 +124,10 @@ public class servletBusqVid extends HttpServlet {
                     case "play-video":
                         log("play-video");                 
                         value = request.getParameter("videoEnlace");
+                        parametro = "ENLACE";
                         log("Buscando por " + value);
-                        show_visualization(request,response,value);
+                        search_2(request,response,parametro,value);
+                        response.sendRedirect("reproduccion.jsp");
                         break;
                     
                     default:
@@ -168,8 +181,81 @@ public class servletBusqVid extends HttpServlet {
         
             //video[] videos = gson.fromJson(sb.toString(), video[].class);
             System.out.println(gson.toJson(list));
+        
             request.getSession().setAttribute("videos_list", list);
-            response.sendRedirect("listadoVid.jsp");
+            
+        }
+
+        /*PrintWriter pw = response.getWriter();
+        pw.print(gson.toJson(response_2));
+        pw.flush();*/
+
+/*
+        StringBuffer sb = new StringBuffer();
+        BufferedReader br = request.getReader();
+
+        String atributos = null;
+
+
+        while((atributos = br.readLine()) != null){
+            sb.append(atributos);
+        
+        }*/
+    }
+    
+        public void search_2(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
+        log("Buscando por" + parametro);              
+        //List<video> videos = videoDAO.getVideos(parametro,value);
+
+        Gson gson = new Gson();
+        dataJson datajson = new dataJson(parametro,value);
+        //dataJson datajson = new dataJson("TITULO","La casa de Papel");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setStatus(200);
+        
+        String       postUrl       = "http://localhost:8080/ISDCM_Sesion2/ServletServer";// put in your url
+
+        HttpClient   httpClient    = HttpClientBuilder.create().build();
+        HttpPost     post          = new HttpPost(postUrl);
+        StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
+        post.setEntity(postingString);
+        post.setHeader("Content-type", "application/json");
+        HttpResponse  response_2 = httpClient.execute(post);
+        //httpClient.execute(post);
+        log("Buscando por final" );
+        
+        HttpEntity entity = response_2.getEntity();
+
+        if (entity != null) {
+
+            InputStreamReader reader = new InputStreamReader(entity.getContent());
+            BufferedReader br = new BufferedReader(reader);
+
+            //BufferedReader br = request.getReader();
+            StringBuffer sb = new StringBuffer();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            log("Buscando " +  (sb.toString()));
+
+            Gson gson_1 = new Gson();
+
+     //   video[] videos = gson_1.fromJson(new JsonReader(new FileReader(sb.toString())), video[].class);
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
+            List<video> list = new Gson().fromJson(sb.toString(), listType);
+            
+            System.out.println(gson.toJson(list));
+                      
+          
+            String temp = list.get(0).getTitulo();
+            request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
+            request.getSession().setAttribute("videoDuracion", list.get(0).getDuracion());
+            request.getSession().setAttribute("videoEnlace", list.get(0).getEnlace());
+            request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
+            request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
         }
 
         /*PrintWriter pw = response.getWriter();
@@ -189,22 +275,64 @@ public class servletBusqVid extends HttpServlet {
         }*/
     }
         
-            
-    public void show_visualization(HttpServletRequest request, HttpServletResponse response, String enlace) throws IOException {
-        log("Accediendo " + enlace);
-
-        ISDCM_Client restClient = new ISDCM_Client();
-        String result_1 =  restClient.increReproducciones(enlace);
-
-        String result_2 = restClient.getReproducciones(enlace);
+     /*       
+    public void show_visualization(HttpServletRequest request, HttpServletResponse response, String parameter, String enlace) throws IOException {
+       
+        //String location = request.getParameter("location");
         
-        log("El resultato 1 y 2" + result_1 +" " + result_2);
 
-        restClient.close();
+        Gson gson = new Gson();
+ 
+        dataJson datajson = new dataJson(parameter,enlace);
+        //dataJson datajson = new dataJson("TITULO","La casa de Papel");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setStatus(200);
+        
+        String       postUrl       = "http://localhost:8080/ISDCM_Sesion2/ServletServer";// put in your url
+
+        HttpClient   httpClient    = HttpClientBuilder.create().build();
+        HttpPost     post          = new HttpPost(postUrl);
+        StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
+        post.setEntity(postingString);
+        post.setHeader("Content-type", "application/json");
+        HttpResponse  response_2 = httpClient.execute(post);
+        //httpClient.execute(post);
+        log("Buscando por final" );
+        
+        HttpEntity entity = response_2.getEntity();
+
+        if (entity != null) {
+
+            InputStreamReader reader = new InputStreamReader(entity.getContent());
+            BufferedReader br = new BufferedReader(reader);
+
+            //BufferedReader br = request.getReader();
+            StringBuffer sb = new StringBuffer();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            log("Buscando " +  (sb.toString()));
+
+            Gson gson_1 = new Gson();
+
+     //   video[] videos = gson_1.fromJson(new JsonReader(new FileReader(sb.toString())), video[].class);
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
+            List<video> list = new Gson().fromJson(sb.toString(), listType);
+        
+        log("El resultato 1 y 2" + list);
+        
+        
+
+        
         request.getSession().removeAttribute("play-video");
         response.sendRedirect("reproduccion.jsp");
-
-    }
+        request.getSession().setAttribute("video", list);
+        
+        }
+    }  */  
 
     /**
      * Returns a short description of the servlet.

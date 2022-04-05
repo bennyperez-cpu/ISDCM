@@ -5,6 +5,9 @@
  */
 package isdcm.isdcm_sesion1.resources;
 
+import isdcm.model.video;
+import java.util.List;
+import static javafx.scene.input.KeyCode.T;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -50,9 +53,19 @@ public class ISDCM_Client {
         resource = resource.path("getInfo");
         return resource.request(javax.ws.rs.core.MediaType.TEXT_HTML).get(String.class);
     }
+    
+    public <T> T lista_video(Class<T> responseType, String enlace) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        if (enlace != null) {
+            resource = resource.queryParam("enlace", enlace);
+        }
+        resource = resource.path("getVideos");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
 
     public void close() {
         client.close();
     }
+
     
 }
