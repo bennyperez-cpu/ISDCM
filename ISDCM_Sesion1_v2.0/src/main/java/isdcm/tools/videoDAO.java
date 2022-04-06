@@ -102,6 +102,7 @@ public int validar_vid(video vid){
                 video1.setReproducciones(rs.getInt("NUMERO_DE_REPRODUCCIONES"));
                 video1.setDescripcion(rs.getString("DESCRIPCION"));
                 video1.setFormato(rs.getString("FORMATO"));
+                video1.setEnlace(rs.getString("ENLACE"));
                 videos.add(video1);
 
             }

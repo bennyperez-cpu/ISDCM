@@ -40,7 +40,8 @@ ${titulo}
             <div class="container" >
                 <h1 class="display-4 title">Playing: ${videoTitulo}</h1>
                 <h2 class="display-10 title">Reproducciones: ${videoReproduccion}</h2>
-                <h3 class="display-10 title">Duracion ${videoDuracion}</h3>
+                <h3 class="display-10 title">Duracion: ${videoDuracion}</h3>
+                <h4 class="display-10 title">Formato: ${videoFormato}</h4>
                 
                 
                 
@@ -60,7 +61,7 @@ ${titulo}
                     poster="MY_VIDEO_POSTER.jpg"
                     data-setup="{}"
                     >
-                    <source src='Video/${videoFormato}' type='video/${videoFormato}'>
+                    <source src="${videoEnlace}.${videoFormato}" type="video/${videoFormato}">
                     <div id="player" class="js-player"></div>
 
                     <p class="vjs-no-js">

@@ -140,7 +140,7 @@
                                     <th scope="col">Título</th>
                                     <th scope="col">Autor</th>
                                     <th scope="col">Duracion</th>
-                                    <th scope="col">descripcion</th>
+                                    <th scope="col">Descripcion</th>
                                     <th scope="col">Reproducciones</th>
                                     <th scope="col">Formato</th>
                                     <th scope="col">Fecha de Creación</th>

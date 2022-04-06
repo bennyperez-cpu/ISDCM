@@ -183,9 +183,17 @@ public class servletBusqVid extends HttpServlet {
     }
     
         public void search_2(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
-        log("Buscando por" + parametro);              
+        log("Buscando por" + parametro);   
+        
+      
 
         Gson gson = new Gson();
+        
+        ISDCM_Client restClient = new ISDCM_Client();
+        restClient.increReproducciones(value);
+
+            restClient.close();
+        
         dataJson datajson = new dataJson(parametro,value);
         //dataJson datajson = new dataJson("TITULO","La casa de Papel");
         response.setContentType("application/json");
@@ -224,11 +232,16 @@ public class servletBusqVid extends HttpServlet {
             List<video> list = new Gson().fromJson(sb.toString(), listType);
             System.out.println(gson.toJson(list));
 
-            request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
             request.getSession().setAttribute("videoDuracion", list.get(0).getDuracion());
             request.getSession().setAttribute("videoEnlace", list.get(0).getEnlace());
+            request.getSession().setAttribute("videoFormato", list.get(0).getFormato());
             request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
             request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
+            
+            
+
+            
+            log("Buscando Enlace" + list.get(0).getEnlace().toString());
         }
 
  
