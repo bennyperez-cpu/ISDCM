@@ -192,7 +192,7 @@ public class servletBusqVid extends HttpServlet {
         ISDCM_Client restClient = new ISDCM_Client();
         restClient.increReproducciones(value);
 
-            restClient.close();
+        restClient.close();
         
         dataJson datajson = new dataJson(parametro,value);
         //dataJson datajson = new dataJson("TITULO","La casa de Papel");
