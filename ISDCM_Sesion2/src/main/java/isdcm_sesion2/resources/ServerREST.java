@@ -30,6 +30,24 @@ public class ServerREST {
 
     public ServerREST() {
     }
+    
+    /**
+     * Sample of POST method
+     * 
+     * @param info
+     * @param fecha
+     * @return 
+     */
+    @Path("postInfo")   
+    @POST    
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces("text/html")
+    public String increReproducciones(@FormParam("enlace") String enlace) 
+    {                
+        boolean success = videoDAO.incrementReproducciones(enlace);
+        return Boolean.toString(success);
+        //  @FormParam("enlace") String enlace
+    }   
      
     @Path("getInfo")
     @GET    
@@ -39,7 +57,6 @@ public class ServerREST {
         int visualizations = videoDAO.getReproducciones(enlace);
         return Integer.toString(visualizations);
         //@QueryParam("enlace") String enlace
-    
     }
     
     
@@ -52,8 +69,6 @@ public class ServerREST {
         String parameter = "ENLACE";
         videos = videoDAO.getVideos(parameter,enlace);
         return videos;
-        //@QueryParam("enlace") String enlace
-    
     }
     
     /*
@@ -73,23 +88,7 @@ public class ServerREST {
     
     */
 
-    /**
-     * Sample of POST method
-     * 
-     * @param info
-     * @param fecha
-     * @return 
-     */
-    @Path("postInfo")   
-    @POST    
-    @Consumes("application/x-www-form-urlencoded")
-    @Produces("text/html")
-    public String increReproducciones(@FormParam("enlace") String enlace) 
-    {                
-        boolean success = videoDAO.incrementReproducciones(enlace);
-        return Boolean.toString(success);
-        //  @FormParam("enlace") String enlace
-    }    
+ 
     
 }
 

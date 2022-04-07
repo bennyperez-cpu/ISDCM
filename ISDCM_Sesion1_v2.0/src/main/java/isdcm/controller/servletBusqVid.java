@@ -166,8 +166,6 @@ public class servletBusqVid extends HttpServlet {
 
             InputStreamReader reader = new InputStreamReader(entity.getContent());
             BufferedReader br = new BufferedReader(reader);
-
-            //BufferedReader br = request.getReader();
             StringBuffer sb = new StringBuffer();
             String line = null;
             while ((line = br.readLine()) != null) {
@@ -177,22 +175,14 @@ public class servletBusqVid extends HttpServlet {
 
             java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
             List<video> list = new Gson().fromJson(sb.toString(), listType);
-        
-            //video[] videos = gson.fromJson(sb.toString(), video[].class);
             System.out.println(gson.toJson(list));
-        
-            request.getSession().setAttribute("videos_list", list);
-            
+            request.getSession().setAttribute("videos_list", list);     
         }
     }
     
         public void search_2(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
         log("Buscando por" + parametro);   
-        
-      
-
         Gson gson = new Gson();
-        
         ISDCM_Client restClient = new ISDCM_Client();
         restClient.increReproducciones(value);
 
@@ -221,8 +211,6 @@ public class servletBusqVid extends HttpServlet {
 
             InputStreamReader reader = new InputStreamReader(entity.getContent());
             BufferedReader br = new BufferedReader(reader);
-
-            //BufferedReader br = request.getReader();
             StringBuffer sb = new StringBuffer();
             String line = null;
             while ((line = br.readLine()) != null) {
@@ -241,14 +229,9 @@ public class servletBusqVid extends HttpServlet {
             request.getSession().setAttribute("videoFormato", list.get(0).getFormato());
             request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
             request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
-            
-            
 
-            
-            log("Buscando Enlace" + list.get(0).getEnlace().toString());
+            log("Buscando Enlace" + list.get(0).getEnlace().toString());// Punto de Control
         }
-
- 
     }
         
            
@@ -258,52 +241,23 @@ public class servletBusqVid extends HttpServlet {
         Response response_1 = client.target("http://localhost:8080/ISDCM_Sesion2/resources/javaee8/getVideos")
             .path("enlace").path(enlace).request(MediaType.APPLICATION_JSON).get();
 
-        ObjectMapper mapper = new ObjectMapper();
-        node = mapper.readTree(response.readEntity(String.class));
-        System.out.println(node.get("generalPractitioner").get(0).get("identifier").get("id"));
-
-
-
-       
-
-
-
-
-
-    
-    /*    
-        Client client = ClientBuilder.newClient();
-            Response response = client.target("http://localhost:8080/hapi_fhir_jpaserver_starter_war/fhir")
-                    .path("Patient").path(patientId).request(MediaType.APPLICATION_JSON).header("Authorization", "Bearer 39ff939jgg").get();
-
-        ObjectMapper mapper = new ObjectMapper();
-        node = mapper.readTree(response.readEntity(String.class));
-        System.out.println(node.get("generalPractitioner").get(0).get("identifier").get("id"));
-
-        
-        request.getSession().removeAttribute("play-video");
-        response.sendRedirect("reproduccion.jsp");
-        request.getSession().setAttribute("video", list);
-     */   
-
-        /*     
-    ClientConfig config = new DefaultClientConfig ();
-    Client client = Client.create (config); 
-    
-    WebResource service = client.resource(UriBuilder.fromUri("http://192.168.1.142:8080").build ()); // getting XML data 
-    String json = service.path("fhir").path("Patient/A").accept (MediaType.APPLICATION_JSON).get (String.class);
- //           System.out.println(); // getting JSON data 
- //           System.out.println(service.path("restPath").path("resourcePath").accept (MediaType.APPLICATION_XML).get (String.class));
-      
-        */
-
-        
-
-
+     
     }   
 
     /**
-     *  private WebTarget webTarget;
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
+
+/*
+    private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/ISDCM_Sesion2/resources";
 
@@ -338,13 +292,28 @@ public class servletBusqVid extends HttpServlet {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+       
+        Client client = ClientBuilder.newClient();
+            Response response = client.target("http://localhost:8080/hapi_fhir_jpaserver_starter_war/fhir")
+                    .path("Patient").path(patientId).request(MediaType.APPLICATION_JSON).header("Authorization", "Bearer 39ff939jgg").get();
 
-}
+        ObjectMapper mapper = new ObjectMapper();
+        node = mapper.readTree(response.readEntity(String.class));
+        System.out.println(node.get("generalPractitioner").get(0).get("identifier").get("id"));
+
+        
+        request.getSession().removeAttribute("play-video");
+        response.sendRedirect("reproduccion.jsp");
+        request.getSession().setAttribute("video", list);
+    
+    ClientConfig config = new DefaultClientConfig ();
+    Client client = Client.create (config); 
+    
+    WebResource service = client.resource(UriBuilder.fromUri("http://192.168.1.142:8080").build ()); // getting XML data 
+    String json = service.path("fhir").path("Patient/A").accept (MediaType.APPLICATION_JSON).get (String.class);
+ //           System.out.println(); // getting JSON data 
+ //           System.out.println(service.path("restPath").path("resourcePath").accept (MediaType.APPLICATION_XML).get (String.class));
+      
+       
+
+*/
