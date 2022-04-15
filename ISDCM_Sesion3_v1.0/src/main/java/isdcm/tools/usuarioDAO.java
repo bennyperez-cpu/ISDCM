@@ -26,7 +26,7 @@ public class usuarioDAO implements Validar{
     @Override
     public int validar(usuario usu){
         r=0;
-        String sql="Select * from usuarios where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
+        String sql="Select * from ISDCM.USUARIOS where NOMBRE_DE_USUARIO=? and CONTRASENHA=?";
        
         try{
             con=cn.getConnection();
@@ -66,7 +66,7 @@ public class usuarioDAO implements Validar{
     public int validar_reg(usuario usu){
         r=0;
 
- 	String sql="Select * from usuarios where NOMBRE_DE_USUARIO=?";
+ 	String sql="Select * from ISDCM.USUARIOS where NOMBRE_DE_USUARIO=?";
        
         try{
             con=cn.getConnection();
@@ -104,7 +104,7 @@ public class usuarioDAO implements Validar{
     
     //Registro de usuario
     public int registerusu(usuario usu1) throws ClassNotFoundException {
-        String sql = "INSERT INTO USUARIOS" + "  (NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES" +" (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ISDCM.USUARIOS" + "  (NOMBRE, APELLIDO, CORREO_ELECTRONICO, NOMBRE_DE_USUARIO, CONTRASENHA) VALUES" +" (?, ?, ?, ?, ?)";
         //String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         int result = 0;
         try{

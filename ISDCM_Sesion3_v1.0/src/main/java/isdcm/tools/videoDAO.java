@@ -19,7 +19,7 @@ public class videoDAO {
     public int registrovid(video video_nuevo) throws ClassNotFoundException {
         
 
-        String sql="INSERT INTO VIDEOS" + "  (TITULO, AUTOR, FECHA_DE_CREACION, DURACION, NUMERO_DE_REPRODUCCIONES, DESCRIPCION, FORMATO) VALUES" +" (?, ?, ?, ?, ?, ?, ?)";
+        String sql="INSERT INTO ISDCM.VIDEOS" + "  (TITULO, AUTOR, FECHA_DE_CREACION, DURACION, NUMERO_DE_REPRODUCCIONES, DESCRIPCION, FORMATO) VALUES" +" (?, ?, ?, ?, ?, ?, ?)";
         int result = 0;
 
         try {
@@ -48,7 +48,7 @@ public class videoDAO {
 public int validar_vid(video vid){
         r=0;
 
- 	String sql="Select * from videos where TITULO=?";
+ 	String sql="Select * from ISDCM.VIDEOS where TITULO=?";
        // String sql = "insert into ISDCM.USUARIOS (NOMBRE,APELLIDO,CORREO_ELECTRONICO,NOMBRE_DE_USUARIO,CONTRASENHA) values ('sQW','sf','wf','wf','wef');";
         try{
             con=cn.getConnection();
@@ -89,7 +89,7 @@ public int validar_vid(video vid){
         try {
                       
             con = cn.getConnection();
-            ps = con.prepareStatement("Select * from videos where " + parametro + " =?");
+            ps = con.prepareStatement("Select * from ISDCM.VIDEOS where " + parametro + " =?");
             ps.setString(1,value);
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>isdcm</groupId>
-    <artifactId>ISDCM_Sesion1</artifactId>
+    <artifactId>ISDCM_Sesion3</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>ISDCM_Sesion1-1.0</name>
+    <name>ISDCM_Sesion3-1.0</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -15,6 +15,9 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>8.0</jakartaee>
     </properties>
+    
+    
+    
     
     <dependencies>
         <dependency>
@@ -41,6 +44,36 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- JSTL -->
+        <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
+        </dependency>
+        <!-- Paquete de implementación JSTL-->
+        <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-impl</artifactId>
+                <version>1.2.5</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat</artifactId>
+            <version>9.0.0.M1</version>
+            <type>pom</type>
+        </dependency>
+
+        
+        
     </dependencies>
     
      <build>
@@ -92,4 +125,32 @@
             </plugin>
         </plugins>
     </build>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
 </project>

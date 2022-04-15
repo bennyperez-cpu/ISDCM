@@ -27,12 +27,16 @@
         <servlet-name>servletBusqVid</servlet-name>
         <url-pattern>/servletBusqVid</url-pattern>
     </servlet-mapping>
+   	
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
 </web-app>
+
+	
 <!--<welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
 </welcome-file-list>-->
