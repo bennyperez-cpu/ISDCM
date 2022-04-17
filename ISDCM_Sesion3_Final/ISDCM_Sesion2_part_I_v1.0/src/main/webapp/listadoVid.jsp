@@ -76,6 +76,11 @@
                     <li>
                         <a href="registroVid.jsp">Subir Videos</a>
                     </li>
+
+                    <li>
+                        <a href="seguridad.jsp">Encrip & Desencrip XML</a>
+                    </li>
+
                 </ul>
                 
                 
