@@ -1,0 +1,15 @@
+isdcm/model/video.class
+isdcm/model/usuario.class
+isdcm/isdcm_sesion1/resources/ClientREST.class
+isdcm/isdcm_sesion1/JAXRSConfiguration.class
+isdcm/tools/videoDAO.class
+isdcm/controller/servletBusqVid$2.class
+isdcm/model/dataJson.class
+isdcm/isdcm_sesion1/resources/ISDCM_Client.class
+isdcm/controller/servletBusqVid.class
+isdcm/tools/Conexion_DB.class
+isdcm/controller/servletUsuarios.class
+isdcm/tools/usuarioDAO.class
+isdcm/controller/servletBusqVid$1.class
+isdcm/tools/Validar.class
+isdcm/controller/servletRegistroVid.class

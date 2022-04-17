@@ -1,0 +1,7 @@
+isdcm_sesion2/JAXRSConfiguration.class
+isdcm_sesion2/modelo/dataJson.class
+tools/Conexion_DB.class
+isdcm_sesion2/modelo/video.class
+isdcm_sesion2/resources/ServerREST.class
+tools/videoDAO.class
+isdcm_sesion2/resources/ServletServer.class
