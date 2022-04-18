@@ -15,6 +15,10 @@
         <servlet-name>servletBusqVid</servlet-name>
         <servlet-class>isdcm.controller.servletBusqVid</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servletEncriptacion</servlet-name>
+        <servlet-class>isdcm.controller.servletEncriptacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servletUsuarios</servlet-name>
         <url-pattern>/servletUsuarios</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>servletBusqVid</servlet-name>
         <url-pattern>/servletBusqVid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletEncriptacion</servlet-name>
+        <url-pattern>/servletEncriptacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
