@@ -72,6 +72,20 @@
             <version>2.13.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.xml/org.apache.xml.serializer -->
+        <dependency>
+            <groupId>org.apache.xml</groupId>
+            <artifactId>org.apache.xml.serializer</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
+
     </dependencies>
 
     

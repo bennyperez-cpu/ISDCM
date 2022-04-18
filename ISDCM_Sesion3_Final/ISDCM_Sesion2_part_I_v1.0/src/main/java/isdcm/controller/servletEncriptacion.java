@@ -12,6 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.xml.serializer;
+import org.apache.xml.serializer.XMLSerializer;
+
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
+
+import org.w3c.dom.Document;
+
+import isdcm.tools.DocumentHelper;
+import isdcm.tools.Encriptacion;
+
 /**
  *
  * @author alumne
@@ -27,21 +38,62 @@ public class servletEncriptacion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest_1(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servletEncriptacion</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servletEncriptacion at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            request.getSession().setAttribute("infoLabel", "");
+            String srcFilename = request.getParameter("srcFilename");
+            String action = request.getParameter("action");
+            String destFilename = request.getParameter("destFilename");
+            Document finalDocument;
+            log(action);
+            log(srcFilename);
+            log("decrypting");
+            // Load the encrypted version of didlFilm1.xml(didlFilm1Encrypted.xml)
+            Document encryptedDocument =  DocumentHelper.loadDocumentFromFile(destFilename);
+            // Get the decrypted document
+            finalDocument = Encriptacion.getDecryptedDocument(encryptedDocument);
+
+            log("IN");
+            response.setContentType( "text/xml" );
+            XMLSerializer serializer = new XMLSerializer();
+            serializer.setOutputByteStream(response.getOutputStream());
+            serializer.serialize(finalDocument);
+        } catch (Exception e) {
+            request.getSession().setAttribute("infoLabel", "Revisa si es que el archivo está en la ruta especificada");
+            response.sendRedirect("seguridad.jsp");
         }
+    }
+
+    protected void processRequest_2(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            request.getSession().setAttribute("infoLabel", "");
+            String srcFilename = request.getParameter("srcFilename");
+            String action = request.getParameter("action");
+            String destFilename = request.getParameter("destFilename");
+            Document finalDocument;
+            log(action);
+            log(srcFilename);
+            
+            log("encrypting");
+            // Load the original(not encrypted) version of didlFilm1.xml
+            Document originalDocument =  DocumentHelper.loadDocumentFromFile(srcFilename);
+            // Get the encrypted document
+            finalDocument = Encriptacion.getEncryptedDocument(originalDocument, false);
+            DocumentHelper.writeDocumentToFile(finalDocument,destFilename);
+            
+            response.setContentType( "text/xml" );
+            XMLSerializer serializer = new XMLSerializer();
+            serializer.setOutputByteStream(response.getOutputStream());
+            serializer.serialize(finalDocument);
+        } catch (Exception e) {
+            request.getSession().setAttribute("infoLabel", "There was an error encripting the document. Please check it exists in the specified path.");
+            response.sendRedirect("security.jsp");
+        } 
+ 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +108,7 @@ public class servletEncriptacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest_1(request, response);
     }
 
     /**
@@ -70,7 +122,7 @@ public class servletEncriptacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest_2(request, response);
     }
 
     /**
