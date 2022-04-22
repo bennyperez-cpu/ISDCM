@@ -5,22 +5,18 @@
  */
 package isdcm.controller;
 
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.xml.serializer;
-import org.apache.xml.serializer.XMLSerializer;
-
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 
 import org.w3c.dom.Document;
 
-import isdcm.tools.DocumentHelper;
+import isdcm.tools.File_Doc_Helper;
 import isdcm.tools.Encriptacion;
 
 /**
@@ -42,18 +38,15 @@ public class servletEncriptacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            request.getSession().setAttribute("infoLabel", "");
-            String srcFilename = request.getParameter("srcFilename");
-            String action = request.getParameter("action");
-            String destFilename = request.getParameter("destFilename");
+            String destFilename = request.getParameter("File_Destin");
+            String destFilename_2 = request.getParameter("File_Destin_2");
             Document finalDocument;
-            log(action);
-            log(srcFilename);
-            log("decrypting");
+            log("Desencriptando");
             // Load the encrypted version of didlFilm1.xml(didlFilm1Encrypted.xml)
-            Document encryptedDocument =  DocumentHelper.loadDocumentFromFile(destFilename);
+            Document encryptedDocument =  File_Doc_Helper.loadDocumentFromFile(destFilename);
             // Get the decrypted document
             finalDocument = Encriptacion.getDecryptedDocument(encryptedDocument);
+            File_Doc_Helper.writeDocumentToFile(finalDocument,destFilename_2);
 
             log("IN");
             response.setContentType( "text/xml" );
@@ -70,20 +63,21 @@ public class servletEncriptacion extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            request.getSession().setAttribute("infoLabel", "");
-            String srcFilename = request.getParameter("srcFilename");
+            String File_source = request.getParameter("File_source");
+            String File_Destin = request.getParameter("File_Destin");
             String action = request.getParameter("action");
-            String destFilename = request.getParameter("destFilename");
+            
+            
             Document finalDocument;
             log(action);
-            log(srcFilename);
+            log(File_source);
             
-            log("encrypting");
+            log("Encriptando");
             // Load the original(not encrypted) version of didlFilm1.xml
-            Document originalDocument =  DocumentHelper.loadDocumentFromFile(srcFilename);
+            Document originalXML =  File_Doc_Helper.loadDocumentFromFile(File_source);
             // Get the encrypted document
-            finalDocument = Encriptacion.getEncryptedDocument(originalDocument, false);
-            DocumentHelper.writeDocumentToFile(finalDocument,destFilename);
+            finalDocument = Encriptacion.getEncryptedDocument(originalXML, false);
+            File_Doc_Helper.writeDocumentToFile(finalDocument,File_Destin);
             
             response.setContentType( "text/xml" );
             XMLSerializer serializer = new XMLSerializer();

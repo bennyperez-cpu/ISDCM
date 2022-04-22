@@ -11,9 +11,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class DocumentHelper {
+public class File_Doc_Helper {
     private final String basePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath(); //to web folder
     private final String finalPath = basePath.substring(0,basePath.lastIndexOf("WEB-INF")).replace("%20", " ");
+    
     
     public static Document loadDocumentFromFile(String fileName) throws Exception {
         File xmlFile = new File(fileName);
@@ -35,11 +36,11 @@ public class DocumentHelper {
     }
     
     public File getFile(String path){
-        return new File(finalPath + File.separator + path);
+        return new File(path);//finalPath + File.separator + path
     }
     
     public void saveFile(String path, byte[] data) throws IOException{
-        File fileToSave = new File(finalPath + File.separator+ path);
+        File fileToSave = new File(path);//finalPath + File.separator+ path
         Files.write(fileToSave.toPath(), data);
     }
 }

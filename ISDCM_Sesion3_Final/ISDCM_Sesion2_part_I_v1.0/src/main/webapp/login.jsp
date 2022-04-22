@@ -41,9 +41,7 @@
         
     </head>
     <body>             
-        
-        
-        
+ 
         <div class="container col-lg-3">
             <form action = "servletUsuarios" method ="get"> 
                 <div class = "form-group text-center">
@@ -56,7 +54,7 @@
                     <label>Nombre de Usuario</label>
                     <input class="form-control text-center" type="text" name="txtnom" placeholder="Ingrese usuario">                    
                 </div>
-                <div class = "form-groupr">
+                <div class = "form-group">
                      <label for="passwordInput" style="float: left">Contraseña</label>
                      <input type="password" name="password" class="form-control text-center" id="passwordInput" placeholder="************" required>
                 </div>

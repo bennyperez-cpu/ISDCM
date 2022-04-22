@@ -46,6 +46,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import isdcm.tools.File_Doc_Helper;
+import isdcm.tools.Encriptacion;
+import java.io.File;
 
 /**
  *
@@ -181,60 +184,88 @@ public class servletBusqVid extends HttpServlet {
     }
     
         public void search_2(HttpServletRequest request, HttpServletResponse response, String parametro, String value) throws IOException {
-        log("Buscando por" + parametro);   
-        Gson gson = new Gson();
-        ISDCM_Client restClient = new ISDCM_Client();
-        restClient.increReproducciones(value);
+            
+            String camino_base = getClass().getProtectionDomain().getCodeSource().getLocation().getPath(); //to web folder
+            String camino_final = camino_base.substring(0,camino_base.lastIndexOf("WEB-INF")).replace("%20", " ");
+            
+            log("Base: "+ camino_base);
+            log("final: "+ camino_final);
+            
+            String video_name = null;
 
-        restClient.close();
-        
-        dataJson datajson = new dataJson(parametro,value);
-        //dataJson datajson = new dataJson("TITULO","La casa de Papel");
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        request.setCharacterEncoding("utf-8");
-        response.setStatus(200);
-        
-        String       postUrl       = "http://localhost:8080/ISDCM_Sesion2_part_II_v1.0/ServletServer";// put in your url
-        HttpClient   httpClient    = HttpClientBuilder.create().build();
-        HttpPost     post          = new HttpPost(postUrl);
-        StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
-        post.setEntity(postingString);
-        post.setHeader("Content-type", "application/json");
-        HttpResponse  response_2 = httpClient.execute(post);
-        //httpClient.execute(post);
-        log("Buscando por final" );
-        
-        HttpEntity entity = response_2.getEntity();
+            File_Doc_Helper dh = new File_Doc_Helper();
+            // Encrypt and save the video data
 
-        if (entity != null) {
 
-            InputStreamReader reader = new InputStreamReader(entity.getContent());
-            BufferedReader br = new BufferedReader(reader);
-            StringBuffer sb = new StringBuffer();
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
+            
+            log("Buscando por" + parametro);   
+            Gson gson = new Gson();
+            ISDCM_Client restClient = new ISDCM_Client();
+            restClient.increReproducciones(value);
+
+            restClient.close();
+
+            dataJson datajson = new dataJson(parametro,value);
+            //dataJson datajson = new dataJson("TITULO","La casa de Papel");
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            request.setCharacterEncoding("utf-8");
+            response.setStatus(200);
+
+            String       postUrl       = "http://localhost:8080/ISDCM_Sesion2_part_II_v1.0/ServletServer";// put in your url
+            HttpClient   httpClient    = HttpClientBuilder.create().build();
+            HttpPost     post          = new HttpPost(postUrl);
+            StringEntity postingString = new StringEntity(gson.toJson(datajson));//gson.tojson() converts your pojo to json
+            post.setEntity(postingString);
+            post.setHeader("Content-type", "application/json");
+            HttpResponse  response_2 = httpClient.execute(post);
+            //httpClient.execute(post);
+            log("Buscando por final" );
+
+            HttpEntity entity = response_2.getEntity();
+
+            if (entity != null) {
+
+                InputStreamReader reader = new InputStreamReader(entity.getContent());
+                BufferedReader br = new BufferedReader(reader);
+                StringBuffer sb = new StringBuffer();
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                log("Buscando " +  (sb.toString()));
+
+                Gson gson_1 = new Gson();
+
+                java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
+                List<video> list = new Gson().fromJson(sb.toString(), listType);
+                System.out.println(gson.toJson(list));
+
+                request.getSession().setAttribute("videoDuracion", list.get(0).getDuracion());
+                //request.getSession().setAttribute("videoEnlace", list.get(0).getEnlace());
+                request.getSession().setAttribute("videoFormato", list.get(0).getFormato());
+                request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
+                request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
+                
+                
+                video_name = list.get(0).getEnlace().substring((list.get(0).getEnlace()).indexOf("/")+1);
+
+                //log("Nombre_vid " + video_name);// Punto de Control
+                
+                File localVideoFile = dh.getFile("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos/" + video_name +"."+ list.get(0).getFormato());
+                byte[] encryptedData = Encriptacion.encryptVideo(localVideoFile);
+                dh.saveFile("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/"+video_name+"_encrypted.data", encryptedData);
+                
+                File encryptedVideoFile = dh.getFile("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/" + video_name + "_encrypted.data");
+                byte[] decryptedData = Encriptacion.decryptVideo(encryptedVideoFile);
+                dh.saveFile("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/"+video_name+"_Decrypted." + list.get(0).getFormato(), decryptedData);  
+                 //log("Buscando Enlace" + video_name+"_Decrypted");
+                request.getSession().setAttribute("videoEnlace", "Videos_DesEncriptado/"+video_name+"_Decrypted");
+                
+                
             }
-            log("Buscando " +  (sb.toString()));
-
-            Gson gson_1 = new Gson();
-
-            java.lang.reflect.Type listType = new TypeToken<ArrayList<video>>(){}.getType();
-            List<video> list = new Gson().fromJson(sb.toString(), listType);
-            System.out.println(gson.toJson(list));
-
-            request.getSession().setAttribute("videoDuracion", list.get(0).getDuracion());
-            request.getSession().setAttribute("videoEnlace", list.get(0).getEnlace());
-            request.getSession().setAttribute("videoFormato", list.get(0).getFormato());
-            request.getSession().setAttribute("videoTitulo", list.get(0).getTitulo());
-            request.getSession().setAttribute("videoReproduccion", list.get(0).getReproducciones());
-
-            log("Buscando Enlace" + list.get(0).getEnlace().toString());// Punto de Control
         }
-    }
         
-           
     public void show_Enlace_Data(HttpServletRequest request, HttpServletResponse response, String parameter, String enlace) throws IOException {
 
         Client client = ClientBuilder.newClient();

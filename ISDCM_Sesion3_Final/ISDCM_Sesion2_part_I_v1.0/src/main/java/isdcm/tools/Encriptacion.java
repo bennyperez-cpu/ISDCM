@@ -9,7 +9,7 @@ import javax.crypto.SecretKey;
 
 import org.w3c.dom.Document;
 
-import com.sun.org.apache.xml.internal.security.encryption.XMLCipher;
+import org.apache.xml.security.encryption.XMLCipher;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
 public class Encriptacion {
 
     static{
-        com.sun.org.apache.xml.internal.security.Init.init();
+        org.apache.xml.security.Init.init();
     }
     public static Document getEncryptedDocument(Document document, boolean encryptContentsOnly) throws Exception {
          /* Academic purpose only, the propper way would be:

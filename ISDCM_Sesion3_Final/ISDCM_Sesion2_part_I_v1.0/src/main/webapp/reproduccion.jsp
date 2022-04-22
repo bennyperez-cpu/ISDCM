@@ -42,9 +42,6 @@ ${titulo}
                 <h2 class="display-10 title">Reproducciones: ${videoReproduccion}</h2>
                 <h3 class="display-10 title">Duracion: ${videoDuracion}</h3>
                 <h4 class="display-10 title">Formato: ${videoFormato}</h4>
-                
-                
-                
                 <hr class="my-4">
                 
 
@@ -61,7 +58,7 @@ ${titulo}
                     poster="MY_VIDEO_POSTER.jpg"
                     data-setup="{}"
                     >
-                    <source src="${videoEnlace}.${videoFormato}" type="video/${videoFormato}">
+                    <source src=${videoEnlace}.${videoFormato} type="video/${videoFormato}">
                     <div id="player" class="js-player"></div>
 
                     <p class="vjs-no-js">

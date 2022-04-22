@@ -107,34 +107,34 @@
                         
                         <% if (session.getAttribute("videos_list") == null) { %>
                             <div class='row row justify-content-md-center'>
-                            <div class='container1 col-3 border border-primary m-1'>
-                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
-                                    <label for="author" >Autor</label>
-                                    <input name="author" type="text" class="form-control" id="author" placeholder="John Doe" required>
-                                    <br>
-                                    <button name="action" value="search-autor" type="submit" class="button" ><i class="fa-solid fa-magnifying-glass" opacity="1"></i> Search</button>
-                                    
-                                </form>
+                                <div class='container1 col-3 border border-primary m-1'>
+                                    <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
+                                        <label for="author" >Autor</label>
+                                        <input name="author" type="text" class="form-control" id="author" placeholder="John Doe" required>
+                                        <br>
+                                        <button name="action" value="search-autor" type="submit" class="button" ><i class="fa-solid fa-magnifying-glass" opacity="1"></i> Search</button>
+
+                                    </form>
+                                </div>
+                                <div class='container2 col-3 border border-primary m-1   text-center'>
+                                    <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
+                                        <label for="title" >Título</label>
+                                        <input name="title" type="text" class="form-control" id="title" placeholder="A Random Movie 2" required>
+                                        <br>
+                                        <button name="action" value="search-titulo" type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+
+                                    </form>
+                                </div>
+                                <div class='container3 col-3 border border-primary m-1   text-center'>
+                                    <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
+                                        <label for="date" style="float: left">Fecha de Creación</label>
+                                        <input name="date" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                                   
+                                        <br>
+                                        <button name="action" value="search-fecha" type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+
+                                    </form>
+                                </div>
                             </div>
-                            <div class='container2 col-3 border border-primary m-1   text-center'>
-                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
-                                    <label for="title" >Título</label>
-                                    <input name="title" type="text" class="form-control" id="title" placeholder="A Random Movie 2" required>
-                                    <br>
-                                    <button name="action" value="search-titulo" type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                                    
-                                </form>
-                            </div>
-                            <div class='container3 col-3 border border-primary m-1   text-center'>
-                                <form action="${pageContext.request.contextPath}/servletBusqVid" method="POST">
-                                    <label for="date" style="float: left">Fecha de Creación</label>
-                                    <input name="date" type="date" class="form-control" id="start" value ="2018-07-22" min= "1900-01-01">                                   
-                                    <br>
-                                    <button name="action" value="search-fecha" type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                                    
-                                </form>
-                            </div>
-                        </div>
                         <% }else{ %>
                             <form action="${pageContext.request.contextPath}/servletBusqVid" method="post">
                                 <button name="action" value="change-search" type="submit" class="btn btn-primary btn-sm m-2">Change Video Search</button>
