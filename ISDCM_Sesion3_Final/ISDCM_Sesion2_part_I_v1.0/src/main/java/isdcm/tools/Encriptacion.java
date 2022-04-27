@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package isdcm.tools;
 
 import javax.crypto.SecretKey;
@@ -13,19 +9,19 @@ import org.apache.xml.security.encryption.XMLCipher;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import java.security.InvalidKeyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 
 /**
  *
@@ -36,86 +32,71 @@ public class Encriptacion {
     static{
         org.apache.xml.security.Init.init();
     }
-    public static Document getEncryptedDocument(Document document, boolean encryptContentsOnly) throws Exception {
-         /* Academic purpose only, the propper way would be:
-            1-Generate the symmetric keys with a keygen algorithm using different random salts per document instance.
-            2-Also the symmetric key should be encrypted and added as metadata in the encrypted file.
-            3-Keys for metadata desencription should be stored as they'll be necessary 
-            to retrieve the symmetrickey in order to succesfully decrypt document's content
-        */
-        String key = "bad_practice_key";
-        SecretKey symmetricKey = new SecretKeySpec(key.getBytes(), "AES");
+    public static Document xml_Encriptacion(Document document, boolean encryptContentsOnly) throws Exception {
+         //https://www.baeldung.com/java-aes-encryption-decryption
+         //https://www.tabnine.com/code/java/classes/org.apache.xml.security.encryption.XMLCipher
+        String llave = "llave_gen_manual";//bad_practice_key
+        SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
         XMLCipher xmlCipher = XMLCipher.getInstance(XMLCipher.AES_128);
-        xmlCipher.init(XMLCipher.ENCRYPT_MODE, symmetricKey);
-        Document encryptedDocument = xmlCipher.doFinal(document, (Element)document.getDocumentElement(),encryptContentsOnly);
-        return encryptedDocument;
+        xmlCipher.init(XMLCipher.ENCRYPT_MODE, llave_Simetrica);
+        Document xml_Encriptado = xmlCipher.doFinal(document, (Element)document.getDocumentElement(),encryptContentsOnly);
+        return xml_Encriptado;
     }
     
-    public static Document getDecryptedDocument(Document document) throws Exception {
-         /* Academic purpose only, the propper way would be:
-            1-Get encrypted symmetric key from the encrypted document's metadata
-            2-Retrieve keys from somewhere to obtain decrypt the metadata and obtain the symmetric key
-            3-Use that symmetric key to succesfully decrypt the encrypted document
-        */
-        String key = "bad_practice_key";
-        SecretKey symmetricKey = new SecretKeySpec(key.getBytes(), "AES");
+    public static Document xml_DesEncriptaccion(Document document) throws Exception {
+         //https://www.baeldung.com/java-aes-encryption-decryption
+         //https://www.tabnine.com/code/java/classes/org.apache.xml.security.encryption.XMLCipher
+        String llave = "llave_gen_manual";
+        SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
         XMLCipher xmlCipher = XMLCipher.getInstance(XMLCipher.AES_128);
-        xmlCipher.init(XMLCipher.DECRYPT_MODE, symmetricKey);
-        Document decryptedDocument = xmlCipher.doFinal(document, (Element)document.getDocumentElement());
-        return decryptedDocument;
-        
+        xmlCipher.init(XMLCipher.DECRYPT_MODE, llave_Simetrica);
+        Document xml_Desencriptado = xmlCipher.doFinal(document, (Element)document.getDocumentElement());
+        return xml_Desencriptado;
     }
     
-    /* Reads the video file located at @path, encrypts its bytes using AES cipher and saves the resulted encrypted
-       bytes into a new file located in the web/ folder "encrypted.data"
-    */
-    public static byte[] encryptVideo(File file){
-        //Generate the key
-        String key = "bad_practice_key";
-        SecretKey symmetricKey = new SecretKeySpec(key.getBytes(), "AES");
 
-        Cipher encryptingCipher;
-        // Encrypt the video
+    public static byte[] video_Encriptacion(File file){
+        //https://www.baeldung.com/java-aes-encryption-decryption
+        //https://www.tabnine.com/code/java/methods/javax.crypto.Cipher/doFinal
+        String llave = "llave_gen_manual";
+        SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
+
+        Cipher aesCipher;
         try {
-            encryptingCipher = Cipher.getInstance("AES");
-            encryptingCipher.init(Cipher.ENCRYPT_MODE,symmetricKey);
+            aesCipher = Cipher.getInstance("AES");
+            aesCipher.init(Cipher.ENCRYPT_MODE,llave_Simetrica);
             
             byte[] data = Files.readAllBytes(file.toPath());
-            byte[] encryptedData = encryptingCipher.doFinal(data);
-           
-            return encryptedData;
+            byte[] Data_Encriptada = aesCipher.doFinal(data);
+
+            return Data_Encriptada;
             
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException ex) {
-            Logger.getLogger(Encriptacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println("Exception");
             return null;
         }
     }
     
-    /* Reads the contents of the file with the encrypted data located in the web/ folder "encrypted.data", decrypts 
-       its bytes using AES cipher and saves the resulted video file into a new file in the web/videos/ folder with
-       its proper format. Video Player will load this file.
-    */
-    public static byte[] decryptVideo(File encryptedFile){
-        //Generate the key
-        String key = "bad_practice_key";
-        SecretKey symmetricKey = new SecretKeySpec(key.getBytes(), "AES");
 
-        Cipher decryptingCipher;
+    public static byte[] video_Desencriptacion(File encryptedFile){
+        //https://www.baeldung.com/java-aes-encryption-decryption
+        //https://www.tabnine.com/code/java/methods/javax.crypto.Cipher/doFinal
+        String llave = "llave_gen_manual";
+        SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
+
+        Cipher des_aesCipher;
         
-        // Decrypt the data
+
         try{
-            decryptingCipher  = Cipher.getInstance("AES");
-            decryptingCipher.init(Cipher.DECRYPT_MODE,symmetricKey);
-        
-            //Decrypt the data
-            byte[] encryptedDataFromEncryptedFile = Files.readAllBytes(encryptedFile.toPath());
-            
-            byte[] decryptedData = decryptingCipher.doFinal(encryptedDataFromEncryptedFile);
-            
-            return decryptedData;
+            des_aesCipher  = Cipher.getInstance("AES");
+            des_aesCipher.init(Cipher.DECRYPT_MODE,llave_Simetrica);
+
+            byte[] File_to_data_Encriptacion = Files.readAllBytes(encryptedFile.toPath());       
+            byte[] Data_Desencriptada = des_aesCipher.doFinal(File_to_data_Encriptacion);          
+            return Data_Desencriptada;
              
         } catch(Exception e){
-            System.out.print(e.getMessage());
+            System.out.println("Exception");
             return null;
         }
     }

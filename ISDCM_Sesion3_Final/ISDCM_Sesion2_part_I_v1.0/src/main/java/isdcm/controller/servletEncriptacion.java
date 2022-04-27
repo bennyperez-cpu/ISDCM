@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package isdcm.controller;
 
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
@@ -21,7 +17,7 @@ import isdcm.tools.Encriptacion;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vásquez
  */
 public class servletEncriptacion extends HttpServlet {
 
@@ -43,12 +39,11 @@ public class servletEncriptacion extends HttpServlet {
             Document finalDocument;
             log("Desencriptando");
             // Load the encrypted version of didlFilm1.xml(didlFilm1Encrypted.xml)
-            Document encryptedDocument =  File_Doc_Helper.loadDocumentFromFile(destFilename);
+            Document encryptedDocument =  File_Doc_Helper.cargar_document_from(destFilename);
             // Get the decrypted document
-            finalDocument = Encriptacion.getDecryptedDocument(encryptedDocument);
-            File_Doc_Helper.writeDocumentToFile(finalDocument,destFilename_2);
+            finalDocument = Encriptacion.xml_DesEncriptaccion(encryptedDocument);
+            File_Doc_Helper.escribir_document_to(finalDocument,destFilename_2);
 
-            log("IN");
             response.setContentType( "text/xml" );
             XMLSerializer serializer = new XMLSerializer();
             serializer.setOutputByteStream(response.getOutputStream());
@@ -73,11 +68,9 @@ public class servletEncriptacion extends HttpServlet {
             log(File_source);
             
             log("Encriptando");
-            // Load the original(not encrypted) version of didlFilm1.xml
-            Document originalXML =  File_Doc_Helper.loadDocumentFromFile(File_source);
-            // Get the encrypted document
-            finalDocument = Encriptacion.getEncryptedDocument(originalXML, false);
-            File_Doc_Helper.writeDocumentToFile(finalDocument,File_Destin);
+            Document originalXML =  File_Doc_Helper.cargar_document_from(File_source);
+            finalDocument = Encriptacion.xml_Encriptacion(originalXML, false);
+            File_Doc_Helper.escribir_document_to(finalDocument,File_Destin);
             
             response.setContentType( "text/xml" );
             XMLSerializer serializer = new XMLSerializer();

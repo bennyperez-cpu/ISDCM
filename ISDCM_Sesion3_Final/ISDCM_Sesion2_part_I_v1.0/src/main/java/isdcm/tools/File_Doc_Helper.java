@@ -11,12 +11,14 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class File_Doc_Helper {
-    private final String basePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath(); //to web folder
-    private final String finalPath = basePath.substring(0,basePath.lastIndexOf("WEB-INF")).replace("%20", " ");
+/**
+ *
+ * @author Benny Hammer Pérez Vásquez
+ */
+
+public class File_Doc_Helper {   
     
-    
-    public static Document loadDocumentFromFile(String fileName) throws Exception {
+    public static Document cargar_document_from(String fileName) throws Exception {
         File xmlFile = new File(fileName);
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         docBuilderFactory.setNamespaceAware(true);
@@ -25,7 +27,7 @@ public class File_Doc_Helper {
         return document;
     }
     
-    public static void writeDocumentToFile(Document doc, String fileName) throws Exception {
+    public static void escribir_document_to(Document doc, String fileName) throws Exception {
         File xmlFile = new File(fileName);
         xmlFile.createNewFile();
         TransformerFactory transformerFactory  = TransformerFactory.newInstance();
@@ -33,14 +35,5 @@ public class File_Doc_Helper {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(xmlFile);
         transformer.transform(source, result);
-    }
-    
-    public File getFile(String path){
-        return new File(path);//finalPath + File.separator + path
-    }
-    
-    public void saveFile(String path, byte[] data) throws IOException{
-        File fileToSave = new File(path);//finalPath + File.separator+ path
-        Files.write(fileToSave.toPath(), data);
     }
 }

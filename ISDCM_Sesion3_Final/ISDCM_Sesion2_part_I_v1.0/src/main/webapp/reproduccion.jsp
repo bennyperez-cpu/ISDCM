@@ -34,6 +34,8 @@ ${titulo}
                 margin-top: 20px;
             }
         </style>
+        <%--<meta http-equiv = "refresh" content="5; url=reproduccion.jsp">
+        --%>
     </head>
     <body>
         <div class="jumbotron jumbotron-fluid">
