@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-abr-2022, 11:05:55
+    Author     : Victor
+*/
+
+
+body{
+
+    margin: 0;
+    padding: 0;
+    background-image: url("img/Fondo_video.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;    
+    background-color: #32baf3;
+}
+.container{
+    background-color:silver;
+    border-radius: 10px;
+    padding:25px;
+    margin-top: 80px
+}
+
+.title_header{
+    font-size: 40px;
+    text-align: center;
+}
+
+.button{
+    background-color: #327ef3;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 8px 4px;
+    width: 200px;
+    border-radius: 12px;
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    cursor: pointer;
+    
+}
+
+.button:hover{
+    
+    background-color: #1b6ae5;
+    color: white;
+}
