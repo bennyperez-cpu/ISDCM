@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.w3c.dom.Document;
 
 import isdcm.tools.File_Doc_Helper;
-import isdcm.tools.Encriptacion;
+import isdcm.tools.Encript_Desencript;
+import static isdcm.tools.serializador.serializadorTool;
 
 /**
  *
@@ -34,20 +35,16 @@ public class servletEncriptacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String destFilename = request.getParameter("File_Destin");
-            String destFilename_2 = request.getParameter("File_Destin_2");
+            String File_Destin = request.getParameter("File_Destin");
+            String File_Destin_2 = request.getParameter("File_Destin_2");
             Document finalDocument;
-            log("Desencriptando");
-            // Load the encrypted version of didlFilm1.xml(didlFilm1Encrypted.xml)
-            Document encryptedDocument =  File_Doc_Helper.cargar_document_from(destFilename);
-            // Get the decrypted document
-            finalDocument = Encriptacion.xml_DesEncriptaccion(encryptedDocument);
-            File_Doc_Helper.escribir_document_to(finalDocument,destFilename_2);
+            log("Punto de Control para Desencriptar");
+            Document encryptedDocument =  File_Doc_Helper.cargar_document_from(File_Destin);
+            finalDocument = Encript_Desencript.xml_DesEncriptacion(encryptedDocument);
+            File_Doc_Helper.escribir_document_to(finalDocument,File_Destin_2);
+            //Pemite mostrar el xml desencriptado en el navegador
+            serializadorTool(finalDocument,response);
 
-            response.setContentType( "text/xml" );
-            XMLSerializer serializer = new XMLSerializer();
-            serializer.setOutputByteStream(response.getOutputStream());
-            serializer.serialize(finalDocument);
         } catch (Exception e) {
             request.getSession().setAttribute("infoLabel", "Revisa si es que el archivo está en la ruta especificada");
             response.sendRedirect("seguridad.jsp");
@@ -60,24 +57,16 @@ public class servletEncriptacion extends HttpServlet {
         try {
             String File_source = request.getParameter("File_source");
             String File_Destin = request.getParameter("File_Destin");
-            String action = request.getParameter("action");
-            
-            
             Document finalDocument;
-            log(action);
-            log(File_source);
-            
-            log("Encriptando");
+            log("Punto de Control para Encriptar");
             Document originalXML =  File_Doc_Helper.cargar_document_from(File_source);
-            finalDocument = Encriptacion.xml_Encriptacion(originalXML, false);
+            finalDocument = Encript_Desencript.xml_Encriptacion(originalXML, false);
             File_Doc_Helper.escribir_document_to(finalDocument,File_Destin);
+            //Pemite mostrar el xml encriptado en el navegador
+            serializadorTool(finalDocument,response);
             
-            response.setContentType( "text/xml" );
-            XMLSerializer serializer = new XMLSerializer();
-            serializer.setOutputByteStream(response.getOutputStream());
-            serializer.serialize(finalDocument);
         } catch (Exception e) {
-            request.getSession().setAttribute("infoLabel", "There was an error encripting the document. Please check it exists in the specified path.");
+            request.getSession().setAttribute("infoLabel", "Revisa si es que el archivo está en la ruta especificada");
             response.sendRedirect("security.jsp");
         } 
  

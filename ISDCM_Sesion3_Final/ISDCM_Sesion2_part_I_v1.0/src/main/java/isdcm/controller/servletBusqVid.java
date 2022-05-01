@@ -35,7 +35,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import isdcm.tools.File_Doc_Helper;
-import isdcm.tools.Encriptacion;
+import isdcm.tools.Encript_Desencript;
 import java.io.File;
 import static java.lang.Thread.sleep;
 import java.nio.file.Files;
@@ -236,25 +236,19 @@ public class servletBusqVid extends HttpServlet {
                 log("Nombre del Video: " + video_name);
    
                 File Video_File = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos/" + video_name +"."+ list.get(0).getFormato());
-                byte[] video_Encriptado = Encriptacion.video_Encriptacion(Video_File);
+                byte[] video_Encriptado = Encript_Desencript.video_Encriptacion(Video_File);
                 File File_Guardar_1 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/"+video_name+"_Encrypted.data");
                 Files.write(File_Guardar_1.toPath(), video_Encriptado);
                 
                 log("Detención");
                      
                 File Video_File_Encriptado = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/" + video_name + "_Encrypted.data");
-                byte[] video_DesEncriptado = Encriptacion.video_Desencriptacion(Video_File_Encriptado);
+                byte[] video_DesEncriptado = Encript_Desencript.video_Desencriptacion(Video_File_Encriptado);
                 File File_Guardar_2 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/"+video_name+"_Decrypted." + list.get(0).getFormato());
                 Files.write(File_Guardar_2.toPath(), video_DesEncriptado);
                 log("Buscando Enlace: " + video_name + "_Decrypted");
                 request.getSession().setAttribute("videoEnlace", "Videos_DesEncriptado/" + video_name + "_Decrypted");
-             /*   
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(servletBusqVid.class.getName()).log(Level.SEVERE, null, ex);
-                }
-             */  
+     
                 try {
                     sleep(1500);
 

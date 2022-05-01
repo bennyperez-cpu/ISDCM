@@ -25,9 +25,9 @@ import javax.crypto.IllegalBlockSizeException;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vásquez
  */
-public class Encriptacion {
+public class Encript_Desencript {
 
     static{
         org.apache.xml.security.Init.init();
@@ -35,6 +35,7 @@ public class Encriptacion {
     public static Document xml_Encriptacion(Document document, boolean encryptContentsOnly) throws Exception {
          //https://www.baeldung.com/java-aes-encryption-decryption
          //https://www.tabnine.com/code/java/classes/org.apache.xml.security.encryption.XMLCipher
+         //https://www.adictosaltrabajo.com/2005/11/24/xmlenc/
         String llave = "llave_gen_manual";//bad_practice_key
         SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
         XMLCipher xmlCipher = XMLCipher.getInstance(XMLCipher.AES_128);
@@ -43,7 +44,7 @@ public class Encriptacion {
         return xml_Encriptado;
     }
     
-    public static Document xml_DesEncriptaccion(Document document) throws Exception {
+    public static Document xml_DesEncriptacion(Document document) throws Exception {
          //https://www.baeldung.com/java-aes-encryption-decryption
          //https://www.tabnine.com/code/java/classes/org.apache.xml.security.encryption.XMLCipher
         String llave = "llave_gen_manual";
@@ -60,43 +61,33 @@ public class Encriptacion {
         //https://www.tabnine.com/code/java/methods/javax.crypto.Cipher/doFinal
         String llave = "llave_gen_manual";
         SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
-
         Cipher aesCipher;
         try {
             aesCipher = Cipher.getInstance("AES");
-            aesCipher.init(Cipher.ENCRYPT_MODE,llave_Simetrica);
-            
+            aesCipher.init(Cipher.ENCRYPT_MODE,llave_Simetrica);            
             byte[] data = Files.readAllBytes(file.toPath());
             byte[] Data_Encriptada = aesCipher.doFinal(data);
-
-            return Data_Encriptada;
-            
+            return Data_Encriptada;  
         } catch (Exception e) {
-            System.out.println("Exception");
+            System.out.println(e);
             return null;
         }
     }
     
-
     public static byte[] video_Desencriptacion(File encryptedFile){
         //https://www.baeldung.com/java-aes-encryption-decryption
         //https://www.tabnine.com/code/java/methods/javax.crypto.Cipher/doFinal
         String llave = "llave_gen_manual";
         SecretKey llave_Simetrica = new SecretKeySpec(llave.getBytes(), "AES");
-
         Cipher des_aesCipher;
-        
-
         try{
             des_aesCipher  = Cipher.getInstance("AES");
             des_aesCipher.init(Cipher.DECRYPT_MODE,llave_Simetrica);
-
             byte[] File_to_data_Encriptacion = Files.readAllBytes(encryptedFile.toPath());       
             byte[] Data_Desencriptada = des_aesCipher.doFinal(File_to_data_Encriptacion);          
             return Data_Desencriptada;
-             
         } catch(Exception e){
-            System.out.println("Exception");
+            System.out.println(e);
             return null;
         }
     }

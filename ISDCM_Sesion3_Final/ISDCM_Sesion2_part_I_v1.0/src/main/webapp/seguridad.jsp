@@ -129,6 +129,8 @@
                             <button name="action" value="desencriptacion" type="submit" class="button" >XML Desencriptado</button>
                         </form> 
                     </div>
+                    <br>
+                    <h5>${empty infoLabel ? '' : infoLabel}</h5>
                   
                 </div>
             </div>

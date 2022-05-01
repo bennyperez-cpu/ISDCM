@@ -19,21 +19,25 @@ import javax.xml.transform.stream.StreamResult;
 public class File_Doc_Helper {   
     
     public static Document cargar_document_from(String fileName) throws Exception {
+        //https://www.tabnine.com/code/java/classes/javax.xml.parsers.DocumentBuilderFactory
+        //https://www.tabnine.com/code/java/methods/javax.xml.parsers.DocumentBuilderFactory/newDocumentBuilder
         File xmlFile = new File(fileName);
-        DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-        docBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-        Document document = docBuilder.parse(xmlFile);
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(xmlFile);
         return document;
     }
     
-    public static void escribir_document_to(Document doc, String fileName) throws Exception {
+    public static void escribir_document_to(Document out, String fileName) throws Exception {
+        //https://www.tabnine.com/code/java/methods/javax.xml.transform.TransformerFactory/newInstance
+        //https://www.tabnine.com/code/java/methods/javax.xml.transform.stream.StreamResult/getWriter
         File xmlFile = new File(fileName);
         xmlFile.createNewFile();
         TransformerFactory transformerFactory  = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory .newTransformer();
-        DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(xmlFile);
+        DOMSource source = new DOMSource(out);
         transformer.transform(source, result);
     }
 }
