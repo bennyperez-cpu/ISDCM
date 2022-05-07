@@ -1,27 +1,16 @@
 
 package isdcm.tools;
 
-import javax.crypto.SecretKey;
-
-import org.w3c.dom.Document;
 
 import org.apache.xml.security.encryption.XMLCipher;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.security.InvalidKeyException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 
 /**
  *

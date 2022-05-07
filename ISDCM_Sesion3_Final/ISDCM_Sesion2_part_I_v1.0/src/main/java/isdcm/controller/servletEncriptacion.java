@@ -1,7 +1,7 @@
 
 package isdcm.controller;
 
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ import org.w3c.dom.Document;
 
 import isdcm.tools.File_Doc_Helper;
 import isdcm.tools.Encript_Desencript;
-import static isdcm.tools.serializador.serializadorTool;
+
 
 /**
  *
@@ -42,8 +42,8 @@ public class servletEncriptacion extends HttpServlet {
             Document encryptedDocument =  File_Doc_Helper.cargar_document_from(File_Destin);
             finalDocument = Encript_Desencript.xml_DesEncriptacion(encryptedDocument);
             File_Doc_Helper.escribir_document_to(finalDocument,File_Destin_2);
-            //Pemite mostrar el xml desencriptado en el navegador
-            serializadorTool(finalDocument,response);
+
+            response.sendRedirect("seguridad.jsp");
 
         } catch (Exception e) {
             request.getSession().setAttribute("infoLabel", "Revisa si es que el archivo está en la ruta especificada");
@@ -62,12 +62,12 @@ public class servletEncriptacion extends HttpServlet {
             Document originalXML =  File_Doc_Helper.cargar_document_from(File_source);
             finalDocument = Encript_Desencript.xml_Encriptacion(originalXML, false);
             File_Doc_Helper.escribir_document_to(finalDocument,File_Destin);
-            //Pemite mostrar el xml encriptado en el navegador
-            serializadorTool(finalDocument,response);
+   
+            response.sendRedirect("seguridad.jsp");
             
         } catch (Exception e) {
             request.getSession().setAttribute("infoLabel", "Revisa si es que el archivo está en la ruta especificada");
-            response.sendRedirect("security.jsp");
+            response.sendRedirect("seguridad.jsp");
         } 
  
     }
