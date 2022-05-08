@@ -7,8 +7,28 @@ package isdcm.isdcm_lab4;
 
 /**
  *
- * @author alumne
+ * @author Benny Hammer Pérez Vásquez
  */
 public class main {
+
+    public static void main (String[] args) throws Exception{
+        //Solicitud del archivo de solicitud
+
+        System.out.println("Hola a todos");
+
+
+
+
+        //Solicitud del archivo de políticas
+
+
+
+        //Implementación del proceso de respuesta de la aplicación
+
+
+
+
+
+    }
     
 }
