@@ -235,16 +235,16 @@ public class servletBusqVid extends HttpServlet {
                 video_name = list.get(0).getEnlace().substring((list.get(0).getEnlace()).indexOf("/")+1);
                 log("Nombre del Video: " + video_name);
    
-                File Video_File = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos/" + video_name +"."+ list.get(0).getFormato());
+                File Video_File = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos/" + video_name +"." + list.get(0).getFormato());
                 byte[] video_Encriptado = Encript_Desencript.video_Encriptacion(Video_File);
-                File File_Guardar_1 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/"+video_name+"_Encrypted.data");
+                File File_Guardar_1 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/" + video_name + "_Encrypted.data");
                 Files.write(File_Guardar_1.toPath(), video_Encriptado);
                 
                 log("Detención");
                      
                 File Video_File_Encriptado = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_Encriptado/" + video_name + "_Encrypted.data");
                 byte[] video_DesEncriptado = Encript_Desencript.video_Desencriptacion(Video_File_Encriptado);
-                File File_Guardar_2 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/"+video_name+"_Decrypted." + list.get(0).getFormato());
+                File File_Guardar_2 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/" + video_name + "_Decrypted." + list.get(0).getFormato());
                 Files.write(File_Guardar_2.toPath(), video_DesEncriptado);
                 log("Buscando Enlace: " + video_name + "_Decrypted");
                 request.getSession().setAttribute("videoEnlace", "Videos_DesEncriptado/" + video_name + "_Decrypted");
@@ -256,7 +256,7 @@ public class servletBusqVid extends HttpServlet {
                     Logger.getLogger(servletBusqVid.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                File File_Guardar_3 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/"+video_name+"_Decrypted." + list.get(0).getFormato());
+                File File_Guardar_3 = new File("/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion3_Final/ISDCM_Sesion2_part_I_v1.0/src/main/webapp/Videos_DesEncriptado/" + video_name + "_Decrypted." + list.get(0).getFormato());
                 while(true){
                     if(File_Guardar_3.isFile()){
                         
