@@ -23,6 +23,11 @@
             <artifactId>org.wso2.balana</artifactId>
             <version>1.1.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.metro</groupId>
+            <artifactId>webservices-osgi</artifactId>
+            <version>2.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -31,7 +36,7 @@
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.1.2</version>
                 <configuration>
                     <archive>
                         <manifest>
