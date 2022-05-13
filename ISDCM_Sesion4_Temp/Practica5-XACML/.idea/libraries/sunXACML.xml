@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sunXACML">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sunXACML/src/resources/lib/sunXACML.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

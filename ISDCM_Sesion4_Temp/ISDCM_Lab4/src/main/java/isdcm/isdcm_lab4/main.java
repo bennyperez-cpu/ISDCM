@@ -48,7 +48,7 @@ public class main {
             System.out.println("Execution time was of: " + String.valueOf((time2-time)/1000000) + "ms");
 
             // Write response to file
-            FileOutputStream fos = new FileOutputStream("src/resources/support-xacml-2-0.support/response/contextResponse.xml");
+            FileOutputStream fos = new FileOutputStream("support-xacml-2-0/support/response/contextResponse.xml");
             response.encode(fos, new Indenter());
             // Print response
             System.out.println("\n======================== XACML Response ===================");
@@ -70,7 +70,7 @@ public class main {
         if(requestNum<1 || requestNum >5){
             return "";
         }
-        return "src/resources/support-xacml-2-0.support/requests/XACMLRequest"+requestNum+".xml";
+        return "support-xacml-2-0/support/requests/XACMLRequest"+requestNum+".xml";
     }
 
     private static ArrayList<String> getPolicyFilesFromUserInput() {
@@ -87,7 +87,8 @@ public class main {
         Set<String> selected = new HashSet<>(Arrays.asList(keyboard.nextLine().replaceAll(" ","").trim().split(",")));
         for (int i = 1; i <= 3; ++i){
             if (selected.contains(Integer.toString(i))){
-                policyFiles.add("src/resources/support-xacml-2-0.support/policy/XACMLPolicy"+i+".xml");
+                policyFiles.add("support-xacml-2-0/support/policy/XACMLPolicy"+i+".xml");
+                //src/resources/
             }
         }
         return policyFiles;

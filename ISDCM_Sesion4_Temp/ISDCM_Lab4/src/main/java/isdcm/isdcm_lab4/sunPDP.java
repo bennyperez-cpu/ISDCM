@@ -66,9 +66,15 @@ public class sunPDP {
     // Copy the selected policies to a new policySet file so Sun can load that file with the selected policies
     private String setPolicyFiles(ArrayList<String> selectedPolicyFiles) throws Exception{
         try {
-            String PATH_TO_POLICY_SET_FILE = "src/resources/support-xacml-2-0.support/policy/XACMLPolicySet.xml";
+            String PATH_TO_POLICY_SET_FILE = "support-xacml-2-0/support/policy/XACMLPolicySet.xml";
             File f = new File(PATH_TO_POLICY_SET_FILE);
+            String basePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+
+            System.out.println(basePath);
+
+
             if (f.exists())   Files.walk(f.toPath()).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+            System.out.println(f.toPath());
             Files.createFile(f.toPath());
 
             //Header
@@ -78,7 +84,7 @@ public class sunPDP {
                     "    </Target>\n";
             Files.write(f.toPath(), header.getBytes());
 
-            String signedPolicyFilename = "src/resources/support-xacml-2-0.support/policy/signedPolicy.xml";
+            String signedPolicyFilename = "support-xacml-2-0/support/policy/signedPolicy.xml";
             //Policies
             for (int i = 0; i < selectedPolicyFiles.size(); ++i){
                 //Load unsigned policy into a DOM document

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BalanaApplication/BalanaApplication.iml" filepath="$PROJECT_DIR$/BalanaApplication/BalanaApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Practica5-XACML.iml" filepath="$PROJECT_DIR$/.idea/Practica5-XACML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sunXACML/sunXACML.iml" filepath="$PROJECT_DIR$/sunXACML/sunXACML.iml" />
+    </modules>
+  </component>
+</project>

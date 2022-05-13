@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="balana-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BalanaApplication/src/resources/balana-master/org.wso2.balana.utils-1.0.3-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BalanaApplication/src/resources/balana-master/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BalanaApplication/src/resources/balana-master/commons-logging-1.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BalanaApplication/src/resources/balana-master/org.wso2.balana-1.0.3-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BalanaApplication/src/resources/balana-master/balana-distribution-1.0.3-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
