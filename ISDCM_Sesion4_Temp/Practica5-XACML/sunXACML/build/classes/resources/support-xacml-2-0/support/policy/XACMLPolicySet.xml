@@ -1,0 +1,103 @@
+<PolicySet xmlns="urn:oasis:names:tc:xacml:1.0:core:schema:wd-17"  PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:deny-overrides" PolicySetId="PolicySetExample" Version="1.0">
+    <Target>
+        <Subject>"Role"</Subject>
+    </Target>
+<Policy PolicyId="ExamplePolicy1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides"> 
+	<Description> Politica reproduccion video Mavericksv </Description> 
+	<Target/> 
+	<Rule Effect="Permit" RuleId="urn:oasis:names:tc:xacml:2.0:ejemplo:RuleMavericksv"> 
+		<Description> Cualquier usuario puede reproducir la película urn:mvideo: Mavericksv.mp4 antes de final de año </Description>
+		<Target>
+			<Subjects>
+		        <AnySubject/>
+		    </Subjects>
+			<Resources> 
+				<Resource> 
+					<ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:regexp-string-match"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">urn:mvideo:Mavericksv.mp4</AttributeValue> 
+						<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ResourceMatch> 
+				</Resource> 
+			</Resources> 
+			<Actions> 
+				<Action> 
+					<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">play</AttributeValue> 
+						<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ActionMatch> 
+				</Action> 
+			</Actions> 
+		</Target> 
+		<Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-less-than-or-equal">
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+				<SubjectAttributeDesignator AttributeId="pruebaId" DataType="http://www.w3.org/2001/XMLSchema#date"/>
+			</Apply>
+			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#date">2015-01-01</AttributeValue>
+		</Condition> 
+	</Rule> 
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>c4T1x/y4zP0/Y5mTJYgnHOqbXLOrMeCHmIfofA9UE34=</DigestValue></Reference></SignedInfo><SignatureValue>MWv8WS+wdIe+rEt05SpzyxwzIPHmd8v5EToWj/x72WiUHYeh0yKANYKZBkhQkK6k3J1q1VFt8hAa
+c8DKIjKFWTCsFS/pF1qaUQ+/AYsoWn8u7TNuHI2pwIjiMZgD7RMIwwmS6yQfFkyDlcOAtYGmdTwK
+EgyUKi7sw/zKERex1xaRmv+khwAsVcl+pQjjN7ujJBWoZh/xJREcKjilWk0Ze8cyI78hSIw5GDn8
+cskmNfgvGGHsiwUDDsx2wvGJMnTO4fm3edfKthH+6tpvmm6iAEFeRluhxiuvfsVatAIiNvTfiUJU
+C5UGFbg90LS7vBCCIFImtiNdqaYILQj9WHiiTA==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>iVY75luzFO6sXiBHY+2+cJel1E4H1H+sdMAVV/wQ3CyYqooVQOHXiUrY9w3WjgvKGCgflBpMqHvn
+iznAnXrR+QTUIaq+iBzQSp3ff+dglv6vm8zkU4FDGmPWVgw2/wPx7kxx/LF9DWhoAjvhNLKt5SHX
+j1ubYo1BC1utk8RnWoYjRntJi01PLz3w2GsSp1pvBKnnDMZ6y365MbKF4ukYgaacakDN10Vw2JIQ
++vSAvX3+qc1oOnSE9rlPpOLmVwfVI1lBcD5lgMonLxzZz74jv+CayAgkFI7wjzVgge5Jbg46+FR5
+XAGE1iMdCvwZwRckFYMlr6VqF2mJIgO/nD/9AQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></Policy>
+<Policy PolicyId="ExamplePolicy2" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides"> 
+	<Description> Copia de Pelicula</Description> 
+	<Target/> 
+	<Rule Effect="Permit" RuleId="urn:oasis:names:tc:xacml:2.0:ejemplo:RuleBaztan"> 
+		<Description> Usuario premium pueden hacer 3 copias de pelicula dada en urn:mvideo:Baztan.mp4</Description>
+		<Target>
+			- <Subjects>
+- <Subject>
+- <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">premium</AttributeValue> 
+  <SubjectAttributeDesignator AttributeId="perfil" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+  </SubjectMatch>
+  </Subject>
+  </Subjects>
+
+			<Resources> 
+				<Resource> 
+					<ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:regexp-string-match"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">urn:mvideo:Baztan.mp4</AttributeValue> 
+						<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ResourceMatch> 
+				</Resource> 
+                                
+			</Resources> 
+			<Actions> 
+				<Action> 
+					<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">copy</AttributeValue> 
+						<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ActionMatch> 
+				</Action> 
+			</Actions> 
+		</Target> 
+		<Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+			
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+					<SubjectAttributeDesignator AttributeId="countCopy" DataType="http://www.w3.org/2001/XMLSchema#integer"/>
+				</Apply>
+				<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">4</AttributeValue>
+			</Apply>
+			
+		</Condition> 
+	</Rule> 
+        
+        <Rule Effect="Deny" RuleId="urn:oasis:names:tc:xacml:2.0:lab6:FinalRule"/> 
+
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>J6Tr+lb5ayRJNAmnvSvTW1SRUukRrC7Z3vJorlHcDto=</DigestValue></Reference></SignedInfo><SignatureValue>ENNu+S1n4wHaG8765TqHnERPZkswAjeTFsslqn3AxtgqcIcV9AkuQO00xCEWZ6b8Lm+83zjo5+2I
+gnprJfi//G9H9gU92l/h29RIHpjAVUW2RXZW0TOMP0cJyahJcO/AFwI7pnWlS2asiZbpIYp+2g+y
+Tk0hduv7jzirljpPKG80IM8pvWhqmHyivtI+dyqidxVSaBPf06CFQoTmVpfd0J0pW4fl/lNnl7qw
++dlpLMQxHO0G4O3WOGtrLUd1JuZT9MSLTZRexVp1cZbz/tUad6Gmy7tJhwGvjPJr09yuGBKCUOmb
+SV+Pydvrrvy+qFg13GyHSoA08xWFR86Q9C/QoQ==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>iNBKUdkIFzlcmknHulOf6TbtLWrIfL8cFWDge7R2iuZ9lU74t9cRjQTgDOK9QCNvNhzD8US93KXP
+hTYGYnvUDhOzP8UF+gpNi4dwmREZcn1fKT/fkac0ZFG7V/NmVrUy0YOho7fKuHFlC5bNLJJbromP
+IiLnAtI4riyuwaU/7v6vqGjLmIRPIvfa3mfaTWqifMQXVkLgoUSnTCQ0F6PDxVZKjXitNKKqqcOB
+Pnkh53gFTjnG8cr1owMLct+AO2+L9ZEx3kuvi8PRExE87hgZrNAvH28kfI/DQGZ89lwl+RwY7ySH
+mYORU/+K4Xh48KKzG2baQ57MLX+lRUttomPpUQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></Policy>
+</PolicySet>
