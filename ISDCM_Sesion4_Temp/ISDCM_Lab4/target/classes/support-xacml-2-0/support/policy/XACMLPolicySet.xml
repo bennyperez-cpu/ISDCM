@@ -1,4 +1,0 @@
-<PolicySet xmlns="urn:oasis:names:tc:xacml:1.0:core:schema:wd-17"  PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:deny-overrides" PolicySetId="PolicySetExample" Version="1.0">
-    <Target>
-        <Subject>"Role"</Subject>
-    </Target>
