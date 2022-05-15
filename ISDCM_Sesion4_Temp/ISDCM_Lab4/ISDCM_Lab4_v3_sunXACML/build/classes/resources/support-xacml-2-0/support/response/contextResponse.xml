@@ -1,6 +1,6 @@
 <Response>
   <Result ResourceID="urn:mvideo:Mavericksv.mp4">
-    <Decision>Permit</Decision>
+    <Decision>Deny</Decision>
     <Status>
       <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
     </Status>

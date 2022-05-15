@@ -35,13 +35,69 @@
 			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#date">2015-01-01</AttributeValue>
 		</Condition> 
 	</Rule> 
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>c4T1x/y4zP0/Y5mTJYgnHOqbXLOrMeCHmIfofA9UE34=</DigestValue></Reference></SignedInfo><SignatureValue>Dx23QL8z+dXiAnskyzK06R1xMQASYeWb1dH3ObPLtgseqLMl4Fsov/h/YrTpVwjlqPVdgbCAXrdl
-ZwjVVEYppx/j2TifJVVnXVZZp7/W+WG38gBLE3oWYXp6q8k2hPIcz5ojkIB+PYrkVjN8PaD5IfMV
-48/m08b6ZA/WUxnyYKTRc8mhUseoh82S3+7Oc3ihJbWg/jRLUtzJd9563i2oEzzWQwNnLgzyoj3L
-d3AbVTdCOj3MfhZdGqujHz6mXlZ7j1jtr9KehoupSXgBAcjiZfojNiV6oXIdyUl00tVJXoehXagh
-/kj+psgxbaCggxeQLeS6OZp/GwZoXgPV4FBZ6A==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>qiqRuNI17qX3brof1JDDB8uPvkbKfjVwfUyNqPepzqQYLs6Pkox2BPbKXDkHd7HcUezAwSZkQ4Jj
-1yy7JlJpB+lGnimpopCVVPs4xObsv7Wpbo8HgotwXHc763WxvmpnfXNHMXthnkxyyrIKlybWnEbx
-/ylL5W1/1AM0mMGqWcYXj9nAdrtjxgVlXtRYfWiu92dVpmC4UC3o3dEdezGBE3Ur/xGzRLm7ljs8
-INgl0Maintxy4jYHTNjUZ/585rk77ZcK9x07V/gF1ZbGfmnrO4jlT2bRebGaFqFCRKyNhKks61ym
-mhQtsFBlp/B4Qv5SKUCN1EKqsYGZzaG1rAAOTw==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></Policy>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>c4T1x/y4zP0/Y5mTJYgnHOqbXLOrMeCHmIfofA9UE34=</DigestValue></Reference></SignedInfo><SignatureValue>BYV3KCUcSRE1/ocLeQQfzRY9Z3gkXyecC70WdgeGe5W6PdVuoDzixeNZZ8gvYOM/DcEZxdNCmT9a
+/P7UYEYDpPLpleB9jBXxHiHDXEPws0NDh+JRsj9ZFBpZTlOGVwVDRiUG1D8Oe3JDP3zzszLQ2ijS
+1jeq5wmqngMLEvXQOBD07bL1bG+izMRcMjYGsmYbe8z72daoH5YO1pLhygnXtCRlRG8qYv0AG0Bl
+HePsgp6O/r4Rdfty/HMHFlzosYAvCWMoBBnaorZg5wNHMRa6BkYC/0/RTWXCiZaiEQain94srejX
+uevA4OZg0OkuqlnZTlgeDuyLigwro7RFhOgi1g==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>jd3uhgktaolBV8kirY7OlxLZFz+QBjbNhh5ueNNOUdugiYyUqZPL6v2GGCxtg77qD1gwAPEB0Bcn
+K8ccJhKvtFmFpD+B4AdAwrJtl7XNLgiX37LD8HbM7OQ1VRSsXetsxBCmT7WSWpR4tRFwWUoHyoV6
+CVX4RmbX19sDKFV9d6wpZmf4D5/ByzIyJaA7EiLalS5nWNpzHRYHIU+FTdWd1huaKm2x8s0kbHz4
+56IhT/R+O8ZwEVY+IuOAAV/Cpe5xplwtfY9GOzGIIvzeLrIWkMEp29vbs7NgmvF8TvD9MDL4AoMo
++pFM1eB/qTm+RE0V+BMmbTTrglTdxxGcFka6RQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></Policy>
+<Policy PolicyId="ExamplePolicy2" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides"> 
+	<Description> Copia de Pelicula</Description> 
+	<Target/> 
+	<Rule Effect="Permit" RuleId="urn:oasis:names:tc:xacml:2.0:ejemplo:RuleBaztan"> 
+		<Description> Usuario premium pueden hacer 3 copias de pelicula dada en urn:mvideo:Baztan.mp4</Description>
+		<Target>
+			- <Subjects>
+- <Subject>
+- <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">premium</AttributeValue> 
+  <SubjectAttributeDesignator AttributeId="perfil" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+  </SubjectMatch>
+  </Subject>
+  </Subjects>
+
+			<Resources> 
+				<Resource> 
+					<ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:regexp-string-match"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">urn:mvideo:Baztan.mp4</AttributeValue> 
+						<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ResourceMatch> 
+				</Resource> 
+                                
+			</Resources> 
+			<Actions> 
+				<Action> 
+					<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"> 
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">copy</AttributeValue> 
+						<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+					</ActionMatch> 
+				</Action> 
+			</Actions> 
+		</Target> 
+		<Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+			
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+					<SubjectAttributeDesignator AttributeId="countCopy" DataType="http://www.w3.org/2001/XMLSchema#integer"/>
+				</Apply>
+				<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">4</AttributeValue>
+			</Apply>
+			
+		</Condition> 
+	</Rule> 
+        
+        <Rule Effect="Deny" RuleId="urn:oasis:names:tc:xacml:2.0:lab6:FinalRule"/> 
+
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>J6Tr+lb5ayRJNAmnvSvTW1SRUukRrC7Z3vJorlHcDto=</DigestValue></Reference></SignedInfo><SignatureValue>kAxrReUmIyYRLh15DdgTrcbYE58YXx9hEmK5ztZAkxvM0AlaRccBlKs9h2W5oE8tSADIfSZdoLZR
+OrKW2jpAI5nCTqD3IS5RjGNrD4I9e0QH/UIY60F867TUuqBsx8ZxLAUmoli2Y2eFdpzANjqbJ/8f
+GcfQGTg2AVDC5vxqtC6BattU7vbrgWQ4VGL1VAlRZwrJOykjK9VapP77R2tsmyuQCw6EUYlnBbQA
+0XpYc95xJK2yJTHcurAi61fNAtuHHtK5wi7Rayf3hdsa++A6arxmsPujz6DYl+H4O/+DuYIgGCmP
+D9s2bIk9smlQXl28KjNCFClGGXxVzclX1sIrdA==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>46lxGANVKw1uJZBNvkX7Ja7HhMdqjiUTSO70Tk2lT2/uU2OMLMkKA16hLsps8qckBKl9Se4jAaMV
+9xV0jTeZHHlKQ7XwVr0g8LwO3qCjHjHjdoeVRWLTEiy5gfiycU2Bjv1x/+Z/pVUQPY7G+HOmmOby
+9QBMvZlAt8ZglmA8yNk/H0Ag2s+Qd0MYb060uyaYi5B/N4I72ugpcRFEJfum+FUJuqXLNP5ZEUBE
+ygpRMje9alvHiP+RMIQeRd3N20R1BagMoqL8ZW/nae05ncyT411DIKF2ay/xPjk1kO6TGFaVPRtn
+MRi8f+RnVc/MAEonG99WVpDOm+BBmCwbvrI7eQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></Policy>
 </PolicySet>

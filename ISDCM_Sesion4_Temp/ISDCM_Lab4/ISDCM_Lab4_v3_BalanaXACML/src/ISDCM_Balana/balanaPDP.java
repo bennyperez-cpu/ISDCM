@@ -34,12 +34,13 @@ public class balanaPDP {
     private static String routeSelectedPolicies = "src/resources/support-xacml-3-0/support/policy/SelectedPolicies/";
 
     public void initBalana(ArrayList<String> filePolicies) {
+        //https://github.com/wso2/balana/blob/master/modules/balana-samples/custom-combining-algo/src/main/java/org/wso2/balana/samples/custom/algo/Main.java
         
         setPolicyFiles(filePolicies);
-        // load config and policies from files
+        
         System.setProperty(FileBasedPolicyFinderModule.POLICY_DIR_PROPERTY, routeSelectedPolicies);
         System.setProperty(ConfigurationStore.PDP_CONFIG_PROPERTY, routeConfig);
-        // create instance of Balana
+        
         balana = Balana.getInstance();
             
     }
