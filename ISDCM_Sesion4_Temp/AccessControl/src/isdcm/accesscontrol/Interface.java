@@ -29,7 +29,8 @@ public class Interface {
     private static String[] options = {
         "[1] Autorización XACML con Sun",
         "[2] Autorización XACML con Balana",
-        "[3] Salir"
+        "[3] Firma Políticas XACML",
+        "[4] Salir"
     };
     
     public Interface (BufferedReader reader) {
@@ -44,7 +45,7 @@ public class Interface {
     public void optionsMainInterface() throws Exception {
         try {
             while(true) {
-                System.out.println("Seleccione cuaalquiera de las siguientes opciones:");
+                System.out.println("Seleccione cualquiera de las siguientes opciones:");
                 for (String s : options)
                     System.out.println(s);
                 String option = buff_reader.readLine();
@@ -57,7 +58,13 @@ public class Interface {
                         InterBalana_xacml interf_2 = new InterBalana_xacml();
                         interf_2.mainBalana();
                         break;
+                        
                     case "3":
+                        InterSignature_xml signature = new InterSignature_xml();
+                        signature.mainSig();
+                        break;
+                        
+                    case "4":
                         exit(0);
                         break;
                     default:

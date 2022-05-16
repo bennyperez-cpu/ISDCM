@@ -11,6 +11,12 @@
   <SubjectAttributeDesignator AttributeId="perfil" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
   </SubjectMatch>
   </Subject>
+  </Subjects><Subject>
+- <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">premium</AttributeValue> 
+  <SubjectAttributeDesignator AttributeId="perfil" DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+  </SubjectMatch>
+  </Subject>
   </Subjects>
 
 			<Resources> 

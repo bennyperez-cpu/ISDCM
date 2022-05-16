@@ -46,8 +46,8 @@ public class InterBalana_xacml {
     
     static Balana balana;
     
-    private static final String PolicyFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/xacml3_resources/policy/XACMLPolicy";
-    private static final String RequestFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/xacml3_resources/request/XACMLRequest";
+    private static final String PolicyFile = "src/xacml3_resources/policy/XACMLPolicy";
+    private static final String RequestFile = "src/xacml3_resources/request/XACMLRequest";
     
     //private static final String pathToSaveFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/resources/outputs/XACMLContextResponse";    
     
@@ -69,8 +69,13 @@ public class InterBalana_xacml {
 
         PDPConfig pdpConfig = balana.getPdpConfig();
         PDP pdp = new PDP(new PDPConfig(pdpConfig.getAttributeFinder(), pdpConfig.getPolicyFinder(), null, true));
+        
+        long initialTime = System.nanoTime();
 
         String response = pdp.evaluate(getXacmlResponse(requestFile));
+        long endTime = System.nanoTime();
+        System.out.println("Tiempo de ejecución: " + String.valueOf((endTime-initialTime)/1000000) + "ms");
+        
         System.out.println(response);
 
 	}

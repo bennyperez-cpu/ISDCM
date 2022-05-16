@@ -22,10 +22,13 @@ import java.util.Scanner;
  */
 public class InterSun_xacml {
     
-    private static final String PolicyFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/xacml2_resources/policy/XACMLPolicy";
-    private static final String RequestFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/xacml2_resources/request/XACMLRequest";
+    private static final String PolicyFile = "src/xacml2_resources/policy/XACMLPolicy";
+    private static final String RequestFile = "src/xacml2_resources/request/XACMLRequest";
+   
     
-    private static final String SaveFile = "/home/victor/Documents/ISDCM/Entrega 4/App_Entrega_4/AccessControl/src/resources/outputs/XACMLContextResponse";
+    private static final String SaveFile = "src/resources/outputs/XACMLContextResponse";
+    
+    
        
     public void mainSun() throws Exception{
     Scanner reader = new Scanner(System.in);
@@ -44,7 +47,11 @@ public class InterSun_xacml {
 
         String requestFile = RequestFile + request_num + ".xml";
         System.out.println("Leyendo RequestFile: " + requestFile);
+        
+        long initialTime = System.nanoTime(); 
         ResponseCtx response = simplePDP.evaluate(requestFile);
+        long endTime = System.nanoTime();
+        System.out.println("Tiempo de ejecución: " + String.valueOf((endTime-initialTime)/1000000) + "ms");
         
         // Mostrar el resultado en consola
         Show_Result.print(System.out, new Indenter(), response.getResults());
