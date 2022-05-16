@@ -11,7 +11,7 @@ import static java.lang.System.exit;
 
 import isdcm.accesscontrol.Balana_xacml.InterBalana_xacml;
 import isdcm.accesscontrol.Sun_xacml.InterSun_xacml;
-import isdcm.accesscontrol.Signature_xml.InterSignature_xml;
+import isdcm.accesscontrol.Signature_xacml.InterSignature_xacml;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -60,7 +60,7 @@ public class Interface {
                         break;
                         
                     case "3":
-                        InterSignature_xml signature = new InterSignature_xml();
+                        InterSignature_xacml signature = new InterSignature_xacml();
                         signature.mainSig();
                         break;
                         

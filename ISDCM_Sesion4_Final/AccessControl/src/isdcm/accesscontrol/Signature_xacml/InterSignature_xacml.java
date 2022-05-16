@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package isdcm.accesscontrol.Signature_xml;
+package isdcm.accesscontrol.Signature_xacml;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -46,7 +46,7 @@ import org.xml.sax.SAXException;
  *
  * @author victor
  */
-public class InterSignature_xml {
+public class InterSignature_xacml {
     private final XMLSignature signature;
     private final KeyPair kp;
     private static final String PolicyFile = "src/xacml3_resources/policy/XACMLPolicy";
@@ -65,12 +65,12 @@ public class InterSignature_xml {
         
 //        String requestFile = RequestFile + requestNumber + ".xml";
 //        System.out.println("Leyendo RequestFile: " + requestFile);
-        InterSignature_xml signature = new InterSignature_xml();
+        InterSignature_xacml signature = new InterSignature_xacml();
         System.out.println(signature.sign(pathPolicies));
      
      }
     
-    public InterSignature_xml() throws KeyException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+    public InterSignature_xacml() throws KeyException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         //https://www.tabnine.com/code/java/methods/javax.xml.crypto.dsig.XMLSignatureFactory/newXMLSignature
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("DSA");
         kpg.initialize(2048);
