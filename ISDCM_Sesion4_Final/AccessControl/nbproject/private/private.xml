@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/xacml2_resources/request/XACMLRequest3.xml</file>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/isdcm/accesscontrol/Signature_xacml/InterSignature_xacml.java</file>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/xacml2_resources/request/XACMLRequest2.xml</file>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/xacml3_resources/policy/XACMLPolicy3.xml</file>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/xacml2_resources/policy/XACMLPolicy1.xml</file>
+            <file>file:/home/alumne/NetBeansProjects/ISDCM/ISDCM_Sesion4_Final/AccessControl/src/xacml2_resources/policy/XACMLPolicy2.xml</file>
+        </group>
     </open-files>
 </project-private>
